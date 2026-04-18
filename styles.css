@@ -2237,3 +2237,2030 @@ body.ios-native-app .view-header h3 {
     padding: 18px 16px;
   }
 }
+
+body.native-app-shell {
+  --page-bg: #f3f0e8;
+  --page-bg-alt: #fbfaf6;
+  --page-ink: #171717;
+  --muted: #70695f;
+  --muted-strong: #3e3a35;
+  --line: rgba(70, 62, 53, 0.1);
+  --line-strong: rgba(50, 44, 38, 0.14);
+  --panel-bg: rgba(255, 252, 246, 0.84);
+  --panel-soft: rgba(255, 252, 247, 0.74);
+  --panel-muted: rgba(246, 242, 234, 0.88);
+  --panel-border: rgba(60, 51, 41, 0.12);
+  --button-bg: rgba(255, 252, 246, 0.78);
+  --button-hover-bg: rgba(255, 252, 246, 0.96);
+  --button-border: rgba(60, 51, 41, 0.14);
+  --input-bg: rgba(255, 252, 246, 0.88);
+  --input-border: rgba(60, 51, 41, 0.14);
+  --input-focus: #5e5a55;
+  --pill-bg: rgba(247, 243, 236, 0.92);
+  --lesson-bg: rgba(255, 252, 246, 0.8);
+  --lesson-hover-bg: rgba(255, 252, 246, 0.98);
+  --selection-bg: rgba(238, 233, 224, 0.94);
+  --selection-border: rgba(68, 60, 52, 0.14);
+  --note-bg: rgba(247, 243, 236, 0.9);
+  --meta-chip-bg: rgba(243, 238, 230, 0.96);
+  --meta-chip-ink: #50483f;
+  --empty-bg: rgba(247, 243, 236, 0.84);
+  --empty-border: rgba(67, 58, 49, 0.16);
+  --choice-bg: rgba(255, 252, 246, 0.88);
+  --accent: #111111;
+  --accent-strong: #111111;
+  --accent-soft: rgba(243, 238, 229, 0.94);
+  --accent-border: rgba(17, 17, 17, 0.14);
+  --accent-text: #faf8f3;
+  --success: #245b45;
+  --success-bg: rgba(36, 91, 69, 0.1);
+  --success-border: rgba(36, 91, 69, 0.18);
+  --danger: #8a3b43;
+  --danger-bg: rgba(138, 59, 67, 0.1);
+  --danger-border: rgba(138, 59, 67, 0.16);
+  --native-shell-width: 980px;
+  --native-content-width: 760px;
+  --native-panel-shadow:
+    0 24px 80px rgba(26, 23, 19, 0.08),
+    0 6px 18px rgba(26, 23, 19, 0.05);
+  --font-ui: "SF Pro Text", "Avenir Next", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-copy: "SF Pro Text", "Avenir Next", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "SF Pro Display", "Avenir Next", -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.78), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(225, 218, 207, 0.44), transparent 28%),
+    linear-gradient(180deg, #efe9df 0%, #f8f5ee 48%, #f1ece2 100%);
+}
+
+html[data-theme="dark"] body.native-app-shell {
+  --page-bg: #11100f;
+  --page-bg-alt: #191715;
+  --page-ink: #f4efe7;
+  --muted: #aaa091;
+  --muted-strong: #e6ddd2;
+  --line: rgba(255, 246, 231, 0.08);
+  --line-strong: rgba(255, 246, 231, 0.12);
+  --panel-bg: rgba(27, 24, 21, 0.82);
+  --panel-soft: rgba(32, 28, 25, 0.76);
+  --panel-muted: rgba(30, 27, 24, 0.9);
+  --panel-border: rgba(255, 243, 222, 0.08);
+  --button-bg: rgba(31, 28, 25, 0.84);
+  --button-hover-bg: rgba(42, 38, 34, 0.96);
+  --button-border: rgba(255, 243, 222, 0.1);
+  --input-bg: rgba(31, 28, 25, 0.9);
+  --input-border: rgba(255, 243, 222, 0.12);
+  --input-focus: #f4efe7;
+  --pill-bg: rgba(35, 31, 28, 0.92);
+  --lesson-bg: rgba(28, 25, 22, 0.84);
+  --lesson-hover-bg: rgba(34, 30, 27, 0.94);
+  --selection-bg: rgba(47, 43, 38, 0.96);
+  --selection-border: rgba(255, 243, 222, 0.12);
+  --note-bg: rgba(35, 31, 28, 0.92);
+  --meta-chip-bg: rgba(39, 35, 31, 0.96);
+  --meta-chip-ink: #e8dfd3;
+  --empty-bg: rgba(32, 29, 26, 0.86);
+  --empty-border: rgba(255, 243, 222, 0.1);
+  --choice-bg: rgba(32, 29, 26, 0.88);
+  --accent: #f4efe7;
+  --accent-strong: #f4efe7;
+  --accent-soft: rgba(38, 34, 30, 0.94);
+  --accent-border: rgba(244, 239, 231, 0.12);
+  --accent-text: #11100f;
+  --success: #8dd2b3;
+  --success-bg: rgba(67, 126, 101, 0.18);
+  --success-border: rgba(141, 210, 179, 0.2);
+  --danger: #f0b0b7;
+  --danger-bg: rgba(116, 61, 70, 0.24);
+  --danger-border: rgba(240, 176, 183, 0.16);
+  --native-panel-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.28),
+    0 8px 20px rgba(0, 0, 0, 0.16);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(146, 131, 110, 0.08), transparent 28%),
+    linear-gradient(180deg, #0d0c0b 0%, #151311 48%, #100f0e 100%);
+}
+
+body.native-app-shell::before,
+body.native-app-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.native-app-shell::before {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 50%);
+  opacity: 0.8;
+}
+
+body.native-app-shell::after {
+  inset: -20%;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 84% 80%, rgba(205, 190, 168, 0.18), transparent 26%);
+  filter: blur(80px);
+  opacity: 0.82;
+}
+
+body.native-app-shell .window-shell {
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+body.native-app-shell .window-chrome,
+body.native-app-shell .stats-strip,
+body.native-app-shell .floating-toolbar,
+body.native-app-shell .sidebar,
+body.native-app-shell .hero-panel,
+body.native-app-shell .path-panel,
+body.native-app-shell #course-view,
+body.native-app-shell .app-footer {
+  display: none !important;
+}
+
+body.native-app-shell .workspace {
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 100dvh;
+  height: 100dvh;
+}
+
+body.macos-native-app .workspace {
+  padding: 28px;
+}
+
+body.native-app-shell .content-region {
+  display: grid;
+  gap: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+body.native-app-shell .view,
+body.native-app-shell .view.is-active {
+  display: block;
+  height: 100%;
+}
+
+body.native-app-shell .lesson-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+body.macos-native-app .lesson-shell {
+  width: min(100%, var(--native-shell-width));
+  height: 100%;
+  margin: 0 auto;
+  border: 1px solid color-mix(in srgb, var(--panel-border) 96%, transparent);
+  border-radius: 36px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-bg) 96%, white), color-mix(in srgb, var(--panel-soft) 90%, transparent));
+  box-shadow: var(--native-panel-shadow);
+  backdrop-filter: blur(24px) saturate(1.05);
+}
+
+body.ios-native-app .lesson-shell {
+  width: 100%;
+  min-height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.native-app-shell .ios-top-bar {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+body.macos-native-app .ios-top-bar,
+body.macos-native-app #lesson-empty,
+body.macos-native-app .lesson-body {
+  width: min(100%, var(--native-shell-width));
+  margin-inline: auto;
+}
+
+body.macos-native-app .ios-top-bar {
+  padding: 28px 30px 12px;
+}
+
+body.macos-native-app #lesson-empty {
+  margin: 0 auto 30px;
+}
+
+body.macos-native-app .lesson-body {
+  padding: 10px 30px 30px;
+}
+
+body.ios-native-app .ios-top-bar,
+body.ios-native-app #lesson-empty,
+body.ios-native-app .lesson-body {
+  width: min(calc(100% - 32px - var(--safe-left) - var(--safe-right)), var(--native-shell-width));
+  margin-inline: auto;
+}
+
+body.ios-native-app .ios-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: calc(14px + var(--safe-top)) 0 14px;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: 0;
+}
+
+body.ios-native-app .ios-top-bar.is-scrolled,
+body.ios-native-app.ios-topbar-scrolled .ios-top-bar {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-bg-alt) 92%, transparent), transparent);
+  backdrop-filter: blur(20px);
+  box-shadow: none;
+}
+
+body.ios-native-app #lesson-empty {
+  margin: 8px auto calc(22px + var(--safe-bottom));
+}
+
+body.ios-native-app .lesson-body {
+  padding: 8px 0 0;
+}
+
+body.native-app-shell .lesson-body {
+  min-height: 0;
+  max-width: none;
+  overflow: hidden;
+}
+
+body.native-app-shell .ios-journey-shell,
+body.native-app-shell .study-card,
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel,
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence,
+body.native-app-shell .glass-note,
+body.native-app-shell .empty-state,
+body.native-app-shell .lesson-stats .mini-stat,
+body.native-app-shell .quiz-stats .mini-stat,
+body.native-app-shell .practice-overview .mini-stat,
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card {
+  border: 1px solid color-mix(in srgb, var(--panel-border) 96%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-bg) 96%, white), color-mix(in srgb, var(--panel-soft) 94%, transparent));
+  box-shadow: var(--native-panel-shadow);
+  backdrop-filter: blur(20px) saturate(1.02);
+}
+
+body.native-app-shell .ios-journey-shell {
+  gap: 10px;
+  padding: 16px 18px;
+  border-radius: 24px;
+}
+
+body.native-app-shell .ios-journey-header {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+}
+
+body.native-app-shell .ios-journey-header h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.9vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+body.native-app-shell .ios-journey-track,
+body.native-app-shell .lesson-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--page-ink) 8%, var(--panel-soft));
+  box-shadow: none;
+}
+
+body.native-app-shell .ios-journey-bar,
+body.native-app-shell .lesson-progress-bar {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--page-ink) 92%, #333333),
+    color-mix(in srgb, var(--page-ink) 70%, #7a746c)
+  );
+}
+
+body.native-app-shell .lesson-header {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 4px 4px 0;
+}
+
+body.native-app-shell .lesson-header .eyebrow {
+  display: none;
+}
+
+body.native-app-shell .lesson-header h3 {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+body.native-app-shell #lesson-summary {
+  display: block;
+  max-width: 58ch;
+  margin: 0;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+body.native-app-shell .lesson-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+body.native-app-shell .lesson-header-actions > * {
+  width: auto;
+}
+
+body.native-app-shell .lesson-header-actions .glass-pill {
+  min-height: 36px;
+}
+
+body.native-app-shell #back-to-course {
+  min-width: 180px;
+}
+
+body.native-app-shell .lesson-progress-track,
+body.native-app-shell .lesson-stats,
+body.native-app-shell .exercise-tabs {
+  width: min(100%, var(--native-content-width));
+  margin-inline: auto;
+}
+
+body.native-app-shell .lesson-stats {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+body.native-app-shell .lesson-stats .mini-stat,
+body.native-app-shell .quiz-stats .mini-stat,
+body.native-app-shell .practice-overview .mini-stat {
+  padding: 14px 12px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: none;
+}
+
+body.native-app-shell .exercise-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--pill-bg) 96%, white);
+  border: 1px solid color-mix(in srgb, var(--panel-border) 92%, transparent);
+  box-shadow: none;
+}
+
+body.native-app-shell .toolbar-button,
+body.native-app-shell .sound-button,
+body.native-app-shell .learn-button,
+body.native-app-shell .choice-button,
+body.native-app-shell .exercise-tab,
+body.native-app-shell .chip {
+  min-height: 46px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--button-border) 98%, transparent);
+  background: color-mix(in srgb, var(--button-bg) 96%, white);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.68),
+    0 14px 32px rgba(26, 23, 19, 0.06);
+  backdrop-filter: blur(14px);
+}
+
+body.native-app-shell .toolbar-button:hover,
+body.native-app-shell .sound-button:hover,
+body.native-app-shell .learn-button:hover,
+body.native-app-shell .choice-button:hover,
+body.native-app-shell .exercise-tab:hover,
+body.native-app-shell .chip:hover {
+  background: color-mix(in srgb, var(--button-hover-bg) 96%, white);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.72),
+    0 18px 34px rgba(26, 23, 19, 0.08);
+}
+
+body.native-app-shell .toolbar-button.primary,
+body.native-app-shell .toolbar-button.is-active,
+body.native-app-shell .exercise-tab.is-active {
+  border-color: color-mix(in srgb, var(--page-ink) 16%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--page-ink) 94%, #2b2b2b),
+    color-mix(in srgb, var(--page-ink) 98%, black)
+  );
+  color: var(--accent-text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 34px rgba(17, 17, 17, 0.16);
+}
+
+html[data-theme="dark"] body.native-app-shell .toolbar-button.primary,
+html[data-theme="dark"] body.native-app-shell .toolbar-button.is-active,
+html[data-theme="dark"] body.native-app-shell .exercise-tab.is-active {
+  border-color: color-mix(in srgb, var(--page-ink) 18%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 16px 34px rgba(0, 0, 0, 0.28);
+}
+
+body.native-app-shell .ios-cta-button {
+  min-height: 56px;
+  border-radius: 22px;
+}
+
+body.native-app-shell .glass-pill,
+body.native-app-shell .counter-pill,
+body.native-app-shell .lesson-step-badge,
+body.native-app-shell .lesson-status-tag,
+body.native-app-shell .difficulty-tag,
+body.native-app-shell .meta-chip {
+  min-height: 34px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--panel-border) 92%, transparent);
+  background: color-mix(in srgb, var(--pill-bg) 98%, white);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+body.native-app-shell .search-shell input,
+body.native-app-shell .mode-shell select,
+body.native-app-shell .typing-input {
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--input-border) 96%, transparent);
+  background: color-mix(in srgb, var(--input-bg) 98%, white);
+  box-shadow: none;
+}
+
+body.native-app-shell .search-shell input:focus,
+body.native-app-shell .mode-shell select:focus,
+body.native-app-shell .typing-input:focus {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--page-ink) 10%, transparent),
+    0 10px 28px rgba(17, 17, 17, 0.08);
+}
+
+body.native-app-shell .exercise-pane.is-active {
+  display: block;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 0 0 calc(30px + var(--safe-bottom));
+  overscroll-behavior: contain;
+}
+
+body.native-app-shell .exercise-pane.is-active > * {
+  width: min(100%, var(--native-content-width));
+  margin-inline: auto;
+}
+
+body.native-app-shell .view-header,
+body.native-app-shell .study-next-header {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  justify-items: center;
+  text-align: center;
+}
+
+body.native-app-shell .glass-note {
+  max-width: 44rem;
+  text-align: center;
+}
+
+body.native-app-shell .card-grid {
+  width: min(100%, var(--native-content-width));
+  margin-inline: auto;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+body.native-app-shell .study-card,
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel {
+  padding: 24px;
+  border-radius: 26px;
+}
+
+body.native-app-shell .card-top,
+body.native-app-shell .study-next-actions,
+body.native-app-shell .quiz-actions {
+  justify-content: center;
+}
+
+body.native-app-shell .card-meta {
+  justify-content: center;
+}
+
+body.native-app-shell .card-bisaya {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 1.2rem + 1vw, 2.3rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  text-align: center;
+}
+
+body.native-app-shell .card-english,
+body.native-app-shell .card-pronunciation,
+body.native-app-shell .quiz-feedback,
+body.native-app-shell .grammar-sentence {
+  text-align: center;
+}
+
+body.native-app-shell .quiz-audio-wrap {
+  justify-content: center;
+}
+
+body.native-app-shell .choice-button {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence {
+  border-style: solid;
+}
+
+body.native-app-shell .empty-state {
+  text-align: center;
+}
+
+body.native-app-shell .eyebrow,
+body.native-app-shell .mini-label,
+body.native-app-shell .search-label {
+  color: color-mix(in srgb, var(--muted) 92%, var(--page-ink));
+  letter-spacing: 0.12em;
+}
+
+body.native-app-shell .ios-welcome-screen,
+body.native-app-shell .ios-complete-modal {
+  background:
+    linear-gradient(180deg, rgba(243, 240, 232, 0.62), rgba(251, 250, 246, 0.82)),
+    rgba(243, 240, 232, 0.26);
+  backdrop-filter: blur(24px);
+}
+
+html[data-theme="dark"] body.native-app-shell .ios-welcome-screen,
+html[data-theme="dark"] body.native-app-shell .ios-complete-modal {
+  background:
+    linear-gradient(180deg, rgba(16, 15, 14, 0.58), rgba(23, 20, 18, 0.82)),
+    rgba(16, 15, 14, 0.28);
+}
+
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card {
+  width: min(100%, 520px);
+  padding: 30px 28px;
+  border-radius: 32px;
+}
+
+body.native-app-shell .ios-welcome-card::before,
+body.native-app-shell .ios-complete-card::before {
+  display: none;
+}
+
+body.native-app-shell .ios-welcome-card h2,
+body.native-app-shell .ios-complete-card h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.7rem + 1.2vw, 2.8rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+@media (max-width: 900px) {
+  body.native-app-shell .lesson-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.native-app-shell .lesson-stats .mini-stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  body.native-app-shell .exercise-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  body.macos-native-app .workspace {
+    padding: 18px;
+  }
+
+  body.native-app-shell .lesson-header h3 {
+    max-width: 14ch;
+  }
+
+  body.native-app-shell .lesson-header-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: min(100%, var(--native-content-width));
+  }
+
+  body.native-app-shell .study-card,
+  body.native-app-shell .quiz-card,
+  body.native-app-shell .practice-card,
+  body.native-app-shell .study-next-panel,
+  body.native-app-shell .ios-welcome-card,
+  body.native-app-shell .ios-complete-card {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  body.ios-native-app .ios-top-bar,
+  body.ios-native-app #lesson-empty,
+  body.ios-native-app .lesson-body {
+    width: min(calc(100% - 24px - var(--safe-left) - var(--safe-right)), var(--native-shell-width));
+  }
+
+  body.native-app-shell .toolbar-button,
+  body.native-app-shell .sound-button,
+  body.native-app-shell .learn-button,
+  body.native-app-shell .choice-button,
+  body.native-app-shell .exercise-tab,
+  body.native-app-shell .chip {
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 16px;
+  }
+
+  body.native-app-shell .glass-pill,
+  body.native-app-shell .counter-pill,
+  body.native-app-shell .meta-chip,
+  body.native-app-shell .lesson-status-tag,
+  body.native-app-shell .lesson-step-badge,
+  body.native-app-shell .difficulty-tag {
+    min-height: 32px;
+    padding: 7px 11px;
+  }
+}
+
+body.native-app-shell {
+  --tone-coral: #f7aaa2;
+  --tone-coral-soft: #fbd2cc;
+  --tone-olive: #99a07b;
+  --tone-olive-soft: #cdd4b8;
+  --tone-cream: #fff8f4;
+  --tone-cream-deep: #f7eeea;
+  --tone-ink: #221c1d;
+  --tone-line: rgba(255, 255, 255, 0.78);
+  --page-bg: #f7a7a0;
+  --page-bg-alt: #f9b7af;
+  --page-ink: var(--tone-ink);
+  --muted: #766766;
+  --muted-strong: #403838;
+  --panel-bg: rgba(255, 248, 244, 0.9);
+  --panel-soft: rgba(255, 246, 242, 0.8);
+  --panel-muted: rgba(255, 244, 240, 0.72);
+  --panel-border: rgba(124, 89, 88, 0.12);
+  --button-bg: rgba(255, 249, 245, 0.84);
+  --button-hover-bg: rgba(255, 249, 245, 0.96);
+  --button-border: rgba(73, 57, 57, 0.08);
+  --input-bg: rgba(255, 251, 248, 0.96);
+  --input-border: rgba(73, 57, 57, 0.1);
+  --input-focus: #31292a;
+  --pill-bg: rgba(255, 245, 241, 0.86);
+  --accent: var(--tone-ink);
+  --accent-strong: var(--tone-ink);
+  --accent-soft: rgba(255, 244, 240, 0.78);
+  --accent-border: rgba(34, 28, 29, 0.12);
+  --accent-text: #fff9f6;
+  --selection-bg: rgba(255, 255, 255, 0.52);
+  --selection-border: rgba(34, 28, 29, 0.12);
+  --meta-chip-bg: rgba(255, 250, 247, 0.65);
+  --meta-chip-ink: #403838;
+  --choice-bg: rgba(255, 251, 248, 0.88);
+  --empty-bg: rgba(255, 249, 245, 0.86);
+  --empty-border: rgba(67, 51, 52, 0.12);
+  background:
+    linear-gradient(180deg, #f7aaa2 0%, #f7a9a2 38%, #f5a19b 100%);
+}
+
+html[data-theme="dark"] body.native-app-shell {
+  --tone-coral: #a96d6d;
+  --tone-coral-soft: #7f5958;
+  --tone-olive: #7e8665;
+  --tone-olive-soft: #576048;
+  --tone-cream: #2c2424;
+  --tone-cream-deep: #241d1d;
+  --tone-ink: #f6eeea;
+  --tone-line: rgba(255, 240, 233, 0.38);
+  --page-bg: #8d5e5d;
+  --page-bg-alt: #734f4e;
+  --page-ink: #f7f0eb;
+  --muted: #dbc4c0;
+  --muted-strong: #f1e6e1;
+  --panel-bg: rgba(38, 30, 30, 0.9);
+  --panel-soft: rgba(46, 36, 36, 0.84);
+  --panel-muted: rgba(51, 40, 40, 0.72);
+  --panel-border: rgba(255, 241, 234, 0.08);
+  --button-bg: rgba(45, 35, 35, 0.88);
+  --button-hover-bg: rgba(59, 46, 46, 0.96);
+  --button-border: rgba(255, 241, 234, 0.08);
+  --input-bg: rgba(42, 33, 33, 0.96);
+  --input-border: rgba(255, 241, 234, 0.1);
+  --input-focus: #fff6f3;
+  --pill-bg: rgba(54, 44, 44, 0.82);
+  --accent: #f8f0ec;
+  --accent-strong: #f8f0ec;
+  --accent-soft: rgba(47, 36, 36, 0.82);
+  --accent-border: rgba(248, 240, 236, 0.12);
+  --accent-text: #231c1d;
+  --selection-bg: rgba(255, 255, 255, 0.08);
+  --selection-border: rgba(248, 240, 236, 0.12);
+  --meta-chip-bg: rgba(62, 49, 49, 0.76);
+  --meta-chip-ink: #f0e4df;
+  --choice-bg: rgba(41, 33, 33, 0.9);
+  --empty-bg: rgba(47, 38, 38, 0.84);
+  --empty-border: rgba(248, 240, 236, 0.1);
+  background:
+    linear-gradient(180deg, #7f5756 0%, #724d4d 38%, #633f3f 100%);
+}
+
+body.native-app-shell::before {
+  background:
+    radial-gradient(circle at 16% 16%, transparent 0 154px, var(--tone-line) 155px 157px, transparent 158px),
+    radial-gradient(circle at 82% 10%, transparent 0 118px, var(--tone-line) 119px 121px, transparent 122px),
+    radial-gradient(circle at 52% 98%, transparent 0 162px, var(--tone-line) 163px 165px, transparent 166px),
+    radial-gradient(circle at 6% 74%, rgba(255, 255, 255, 0.14) 0 120px, transparent 121px),
+    radial-gradient(circle at 92% 62%, rgba(255, 255, 255, 0.08) 0 170px, transparent 171px);
+  opacity: 1;
+}
+
+body.native-app-shell::after {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 82% 24%, rgba(255, 255, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 78% 88%, rgba(241, 193, 184, 0.44), transparent 24%),
+    radial-gradient(circle at 10% 88%, rgba(255, 188, 181, 0.36), transparent 24%);
+  filter: blur(86px);
+}
+
+body.native-app-shell .lesson-shell,
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card,
+body.native-app-shell .ios-journey-shell,
+body.native-app-shell .study-card,
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel,
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence,
+body.native-app-shell .glass-note,
+body.native-app-shell .empty-state {
+  border-color: transparent;
+  box-shadow:
+    0 22px 40px rgba(118, 73, 73, 0.08),
+    0 8px 18px rgba(118, 73, 73, 0.05);
+}
+
+body.native-app-shell .lesson-shell {
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+}
+
+body.macos-native-app .lesson-shell {
+  background:
+    linear-gradient(180deg, rgba(255, 248, 244, 0.76), rgba(255, 244, 240, 0.62));
+  border-radius: 42px;
+  box-shadow:
+    0 30px 60px rgba(118, 73, 73, 0.12),
+    0 10px 22px rgba(118, 73, 73, 0.08);
+}
+
+body.native-app-shell .ios-top-bar {
+  gap: 20px;
+}
+
+body.native-app-shell .ios-welcome-card {
+  min-height: min(82dvh, 760px);
+  justify-content: end;
+  align-content: end;
+  gap: 16px;
+  padding: 34px 28px 42px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 24% 17%, var(--tone-coral) 0 70px, transparent 71px),
+    radial-gradient(circle at 77% 22%, rgba(247, 170, 162, 0.9) 0 18px, transparent 19px),
+    radial-gradient(ellipse at 50% 44%, rgba(255, 255, 255, 0.62) 0 42%, transparent 43%),
+    radial-gradient(circle at 84% 68%, rgba(255, 210, 204, 0.9), transparent 18%),
+    linear-gradient(180deg, var(--tone-cream), rgba(255, 247, 243, 0.96));
+  position: relative;
+  overflow: hidden;
+}
+
+body.native-app-shell .ios-welcome-card::before,
+body.native-app-shell .ios-welcome-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+body.native-app-shell .ios-welcome-card::before {
+  width: 440px;
+  height: 440px;
+  right: -140px;
+  top: 90px;
+  border: 2px solid rgba(247, 170, 162, 0.58);
+}
+
+body.native-app-shell .ios-welcome-card::after {
+  inset: auto -90px 210px auto;
+  width: 420px;
+  height: 220px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.52), transparent 40%),
+    linear-gradient(180deg, rgba(255, 217, 212, 0.6), rgba(255, 247, 243, 0));
+}
+
+body.native-app-shell .ios-welcome-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.native-app-shell .ios-welcome-card .eyebrow,
+body.native-app-shell .ios-complete-card .eyebrow,
+body.native-app-shell .ios-journey-header .eyebrow,
+body.native-app-shell .exercise-tab,
+body.native-app-shell .mini-label {
+  letter-spacing: 0.22em;
+}
+
+body.native-app-shell .ios-welcome-card h2,
+body.native-app-shell .ios-complete-card h2,
+body.native-app-shell .ios-journey-header h3,
+body.native-app-shell .lesson-header h3,
+body.native-app-shell .view-header h3,
+body.native-app-shell .study-next-header h3 {
+  font-family: "Avenir Next", "Futura", -apple-system, BlinkMacSystemFont, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+body.native-app-shell .ios-welcome-card h2,
+body.native-app-shell .ios-complete-card h2 {
+  max-width: 12ch;
+  margin-inline: auto;
+  font-size: clamp(1.45rem, 1rem + 1.5vw, 2.25rem);
+  line-height: 1.45;
+}
+
+body.native-app-shell .section-copy {
+  max-width: 34ch;
+  margin-inline: auto;
+}
+
+body.native-app-shell .ios-welcome-pills {
+  justify-content: center;
+}
+
+body.native-app-shell .ios-cta-button,
+body.native-app-shell .learn-button {
+  background: var(--tone-ink);
+  color: #fff9f7;
+  border-color: transparent;
+  box-shadow:
+    0 16px 28px rgba(34, 28, 29, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body.native-app-shell .ios-cta-button:hover,
+body.native-app-shell .learn-button:hover {
+  background: #161213;
+}
+
+body.native-app-shell .learn-button.is-on {
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--tone-ink);
+  border-color: rgba(34, 28, 29, 0.1);
+  box-shadow: none;
+}
+
+body.native-app-shell .ios-journey-shell {
+  text-align: center;
+  padding: 24px 24px 22px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(247, 170, 162, 0.74), transparent 18%),
+    linear-gradient(180deg, rgba(255, 248, 244, 0.92), rgba(255, 244, 240, 0.9));
+}
+
+body.native-app-shell .ios-journey-header {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 10px;
+}
+
+body.native-app-shell .ios-journey-header h3 {
+  font-size: clamp(1rem, 0.85rem + 0.7vw, 1.35rem);
+  line-height: 1.5;
+}
+
+body.native-app-shell .ios-journey-track {
+  width: min(100%, 320px);
+  margin-inline: auto;
+  background: rgba(34, 28, 29, 0.08);
+}
+
+body.native-app-shell .lesson-header {
+  gap: 16px;
+  padding-top: 2px;
+}
+
+body.native-app-shell .lesson-header h3 {
+  max-width: 16ch;
+  font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.45rem);
+  line-height: 1.55;
+}
+
+body.native-app-shell #lesson-summary {
+  max-width: 38ch;
+  font-family: var(--font-ui);
+  font-size: 0.94rem;
+}
+
+body.native-app-shell #lesson-progress-text,
+body.native-app-shell .lesson-progress-track,
+body.native-app-shell .lesson-stats {
+  display: none;
+}
+
+body.native-app-shell .lesson-header-actions {
+  justify-content: center;
+  align-items: center;
+}
+
+body.native-app-shell .glass-pill,
+body.native-app-shell .counter-pill,
+body.native-app-shell .lesson-step-badge,
+body.native-app-shell .lesson-status-tag,
+body.native-app-shell .difficulty-tag,
+body.native-app-shell .meta-chip {
+  background: rgba(255, 250, 247, 0.62);
+  border-color: rgba(34, 28, 29, 0.08);
+  color: var(--tone-ink);
+  box-shadow: none;
+}
+
+body.native-app-shell .exercise-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  width: min(100%, 520px);
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+body.native-app-shell .exercise-tab {
+  position: relative;
+  justify-content: space-between;
+  min-height: 78px;
+  padding: 18px 22px;
+  border-radius: 24px;
+  background: rgba(255, 248, 244, 0.72);
+  border-color: rgba(34, 28, 29, 0.06);
+  color: var(--tone-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: left;
+  box-shadow:
+    0 16px 28px rgba(118, 73, 73, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68);
+  overflow: hidden;
+}
+
+body.native-app-shell .exercise-tab::before {
+  content: "";
+  position: absolute;
+  inset: auto -60px -40px auto;
+  width: 180px;
+  height: 180px;
+  border: 2px solid rgba(255, 255, 255, 0.56);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+body.native-app-shell .exercise-tab::after {
+  content: "▶";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(34, 28, 29, 0.14);
+  color: rgba(34, 28, 29, 0.9);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+body.native-app-shell .exercise-tab.is-active {
+  background: linear-gradient(180deg, var(--tone-coral), #f7b5ae);
+  color: var(--tone-ink);
+}
+
+body.native-app-shell .exercise-tab.is-active::after {
+  background: var(--tone-ink);
+  color: #fff8f5;
+}
+
+body.native-app-shell .exercise-tab.is-complete:not(.is-active) {
+  background: linear-gradient(180deg, rgba(153, 160, 123, 0.92), rgba(185, 194, 160, 0.9));
+}
+
+body.native-app-shell .exercise-tab.is-complete:not(.is-active)::after {
+  content: "✓";
+}
+
+body.native-app-shell .exercise-tab.is-locked {
+  background: rgba(255, 248, 244, 0.5);
+  opacity: 0.72;
+}
+
+body.native-app-shell .exercise-pane.is-active > * {
+  width: min(100%, 620px);
+}
+
+body.native-app-shell .view-header,
+body.native-app-shell .study-next-header {
+  gap: 14px;
+}
+
+body.native-app-shell .view-header .glass-note,
+body.native-app-shell .study-next-header .glass-note {
+  background: rgba(255, 249, 246, 0.64);
+}
+
+body.native-app-shell .card-grid {
+  width: min(100%, 620px);
+  gap: 16px;
+}
+
+body.native-app-shell .study-card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+  border-radius: 28px;
+  overflow: hidden;
+  color: var(--tone-ink);
+}
+
+body.native-app-shell .study-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -36px -46px auto;
+  width: 220px;
+  height: 220px;
+  border: 2px solid rgba(255, 255, 255, 0.52);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+body.native-app-shell .study-card[data-tone="coral"] {
+  background:
+    radial-gradient(circle at 80% 22%, rgba(255, 255, 255, 0.42), transparent 16%),
+    linear-gradient(180deg, #f8b4ae, #f6a7a1);
+}
+
+body.native-app-shell .study-card[data-tone="olive"] {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(216, 225, 194, 0.64), transparent 16%),
+    linear-gradient(180deg, #9aa27b, #8b946f);
+}
+
+body.native-app-shell .study-card[data-tone="shell"] {
+  background:
+    radial-gradient(circle at 84% 20%, rgba(247, 170, 162, 0.42), transparent 14%),
+    linear-gradient(180deg, #fff8f4, #f7eeea);
+}
+
+body.native-app-shell .study-card[data-tone="olive"] .meta-chip,
+body.native-app-shell .study-card[data-tone="olive"] .difficulty-tag,
+body.native-app-shell .study-card[data-tone="olive"] .card-pronunciation,
+body.native-app-shell .study-card[data-tone="olive"] .card-english {
+  color: #26301f;
+}
+
+body.native-app-shell .card-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+}
+
+body.native-app-shell .card-top,
+body.native-app-shell .card-footer {
+  position: relative;
+  z-index: 1;
+}
+
+body.native-app-shell .card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body.native-app-shell .card-bisaya,
+body.native-app-shell .card-english,
+body.native-app-shell .card-pronunciation {
+  text-align: left;
+}
+
+body.native-app-shell .card-bisaya {
+  font-family: "Avenir Next", "Futura", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.28rem, 1.05rem + 0.7vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.18;
+}
+
+body.native-app-shell .card-english {
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+}
+
+body.native-app-shell .card-pronunciation {
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  opacity: 0.86;
+}
+
+body.native-app-shell .card-meta {
+  justify-content: flex-start;
+}
+
+body.native-app-shell .sound-button--round {
+  width: 54px;
+  min-width: 54px;
+  min-height: 54px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--tone-ink);
+  color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+body.native-app-shell .sound-button--round::before {
+  content: "▶";
+  color: #fff8f5;
+  font-size: 0.95rem;
+  line-height: 1;
+  margin-left: 3px;
+}
+
+body.native-app-shell .sound-button--round:hover {
+  background: #171314;
+}
+
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel,
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence {
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 248, 244, 0.88), rgba(255, 244, 240, 0.78));
+}
+
+body.native-app-shell .quiz-card {
+  background:
+    radial-gradient(circle at 86% 18%, rgba(247, 170, 162, 0.5), transparent 16%),
+    linear-gradient(180deg, rgba(255, 248, 244, 0.9), rgba(255, 244, 240, 0.84));
+}
+
+body.native-app-shell .typing-shell {
+  background:
+    radial-gradient(circle at 16% 24%, rgba(153, 160, 123, 0.36), transparent 18%),
+    linear-gradient(180deg, rgba(244, 247, 237, 0.96), rgba(235, 240, 223, 0.92));
+}
+
+body.native-app-shell .grammar-sentence,
+body.native-app-shell .study-next-panel {
+  background:
+    radial-gradient(circle at 84% 18%, rgba(247, 170, 162, 0.34), transparent 18%),
+    linear-gradient(180deg, rgba(255, 248, 244, 0.96), rgba(250, 237, 232, 0.92));
+}
+
+body.native-app-shell .choice-button {
+  border-radius: 20px;
+  background: rgba(255, 252, 249, 0.74);
+}
+
+body.native-app-shell .study-next-actions,
+body.native-app-shell .quiz-actions {
+  justify-content: center;
+}
+
+body.native-app-shell .quiz-stats,
+body.native-app-shell .practice-overview {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+  body.native-app-shell .exercise-pane.is-active > *,
+  body.native-app-shell .card-grid,
+  body.native-app-shell .exercise-tabs {
+    width: 100%;
+  }
+
+  body.native-app-shell .card-footer {
+    align-items: stretch;
+  }
+
+  body.native-app-shell .card-footer .learn-button {
+    width: 100%;
+  }
+}
+
+body.native-app-shell {
+  --tone-electric: #3f7cff;
+  --tone-electric-soft: #48c6ff;
+  --tone-indigo: #7f5cff;
+  --tone-graphite: #1a2338;
+  --tone-panel-strong: rgba(7, 10, 20, 0.98);
+  --tone-panel: rgba(11, 16, 31, 0.92);
+  --tone-panel-soft: rgba(14, 21, 39, 0.86);
+  --tone-panel-muted: rgba(10, 15, 28, 0.78);
+  --page-bg: #060913;
+  --page-bg-alt: #0a1020;
+  --page-ink: #f5f8ff;
+  --muted: #97a5ca;
+  --muted-strong: #dfe8ff;
+  --panel-bg: var(--tone-panel);
+  --panel-soft: var(--tone-panel-soft);
+  --panel-muted: var(--tone-panel-muted);
+  --panel-border: rgba(123, 150, 235, 0.18);
+  --button-bg: rgba(16, 23, 43, 0.9);
+  --button-hover-bg: rgba(22, 31, 56, 0.96);
+  --button-border: rgba(123, 150, 235, 0.18);
+  --input-bg: rgba(10, 16, 32, 0.96);
+  --input-border: rgba(110, 137, 220, 0.18);
+  --input-focus: #74cfff;
+  --pill-bg: rgba(17, 25, 48, 0.78);
+  --accent: var(--tone-electric);
+  --accent-strong: #76d4ff;
+  --accent-soft: rgba(64, 120, 255, 0.18);
+  --accent-border: rgba(118, 163, 255, 0.22);
+  --accent-text: #f7fbff;
+  --selection-bg: rgba(255, 255, 255, 0.08);
+  --selection-border: rgba(133, 163, 255, 0.18);
+  --meta-chip-bg: rgba(36, 55, 103, 0.56);
+  --meta-chip-ink: #dbe6ff;
+  --choice-bg: rgba(13, 19, 36, 0.94);
+  --empty-bg: rgba(11, 17, 31, 0.88);
+  --empty-border: rgba(123, 150, 235, 0.14);
+  background:
+    radial-gradient(circle at 14% -4%, rgba(129, 74, 255, 0.88), transparent 23%),
+    radial-gradient(circle at 88% 18%, rgba(63, 124, 255, 0.82), transparent 24%),
+    radial-gradient(circle at 62% 84%, rgba(28, 67, 186, 0.32), transparent 28%),
+    linear-gradient(180deg, #121834 0%, #090e1e 42%, #05070f 100%);
+}
+
+html[data-theme="dark"] body.native-app-shell {
+  --page-bg: #04070f;
+  --page-bg-alt: #080c18;
+  --page-ink: #f7faff;
+  --muted: #9ba7c7;
+  --muted-strong: #e5ecff;
+  --panel-bg: rgba(8, 12, 24, 0.94);
+  --panel-soft: rgba(12, 18, 34, 0.9);
+  --panel-muted: rgba(9, 14, 26, 0.82);
+  --panel-border: rgba(123, 150, 235, 0.22);
+  --button-bg: rgba(14, 20, 38, 0.94);
+  --button-hover-bg: rgba(22, 30, 55, 0.98);
+  --input-bg: rgba(8, 13, 27, 0.98);
+  --choice-bg: rgba(10, 15, 30, 0.96);
+  background:
+    radial-gradient(circle at 18% -2%, rgba(129, 74, 255, 0.72), transparent 20%),
+    radial-gradient(circle at 90% 14%, rgba(63, 124, 255, 0.66), transparent 22%),
+    radial-gradient(circle at 56% 78%, rgba(34, 78, 228, 0.22), transparent 28%),
+    linear-gradient(180deg, #0d1328 0%, #080c18 44%, #04060b 100%);
+}
+
+body.native-app-shell::before {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08), transparent 20%),
+    radial-gradient(circle at 84% 14%, rgba(87, 198, 255, 0.16), transparent 18%),
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px, 28px 28px;
+  opacity: 0.58;
+}
+
+body.native-app-shell::after {
+  background:
+    radial-gradient(circle at 20% 16%, rgba(129, 74, 255, 0.34), transparent 22%),
+    radial-gradient(circle at 82% 18%, rgba(63, 124, 255, 0.3), transparent 22%),
+    radial-gradient(circle at 72% 76%, rgba(72, 198, 255, 0.16), transparent 18%),
+    linear-gradient(130deg, transparent 0 45%, rgba(255, 255, 255, 0.08) 46%, transparent 47%);
+  filter: blur(78px);
+  opacity: 0.88;
+}
+
+body.native-app-shell .window-shell {
+  background: rgba(4, 7, 15, 0.34);
+}
+
+body.native-app-shell .lesson-shell,
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card,
+body.native-app-shell .ios-journey-shell,
+body.native-app-shell .study-card,
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel,
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence,
+body.native-app-shell .glass-note,
+body.native-app-shell .empty-state {
+  border: 1px solid rgba(123, 150, 235, 0.16);
+  box-shadow:
+    0 28px 64px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.native-app-shell .lesson-shell {
+  background: transparent;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+body.macos-native-app .lesson-shell {
+  width: min(100%, 1180px);
+  border-radius: 40px;
+  background:
+    linear-gradient(180deg, rgba(10, 14, 28, 0.78), rgba(6, 10, 20, 0.86));
+  backdrop-filter: blur(28px);
+}
+
+body.macos-native-app .ios-top-bar {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card {
+  color: var(--page-ink);
+  background:
+    linear-gradient(180deg, rgba(13, 19, 38, 0.95), rgba(7, 11, 24, 0.98));
+  position: relative;
+  overflow: hidden;
+}
+
+body.native-app-shell .ios-welcome-card {
+  min-height: min(82dvh, 760px);
+  justify-content: end;
+  align-content: end;
+  gap: 16px;
+  padding: 34px 30px 42px;
+  text-align: left;
+}
+
+body.native-app-shell .ios-welcome-card::before,
+body.native-app-shell .ios-welcome-card::after,
+body.native-app-shell .ios-complete-card::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+body.native-app-shell .ios-welcome-card::before {
+  inset: -40px -90px auto auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(63, 124, 255, 0.42), transparent 64%);
+}
+
+body.native-app-shell .ios-welcome-card::after {
+  left: 16%;
+  right: -12%;
+  top: 32%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(120, 176, 255, 0.62), transparent);
+  transform: rotate(-12deg);
+}
+
+body.native-app-shell .ios-complete-card::before {
+  right: -36px;
+  top: -24px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(127, 92, 255, 0.42), transparent 62%);
+}
+
+body.native-app-shell .ios-welcome-card .eyebrow,
+body.native-app-shell .ios-complete-card .eyebrow,
+body.native-app-shell .ios-journey-header .eyebrow,
+body.native-app-shell .exercise-tab,
+body.native-app-shell .mini-label {
+  color: #8fb4ff;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+body.native-app-shell .ios-welcome-card h2,
+body.native-app-shell .ios-complete-card h2,
+body.native-app-shell .ios-journey-header h3,
+body.native-app-shell .lesson-header h3,
+body.native-app-shell .view-header h3,
+body.native-app-shell .study-next-header h3 {
+  font-family: "SF Pro Display", "Avenir Next", -apple-system, BlinkMacSystemFont, sans-serif;
+  text-transform: none;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+body.native-app-shell .ios-welcome-card h2,
+body.native-app-shell .ios-complete-card h2 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(2rem, 1.2rem + 2vw, 3rem);
+  line-height: 0.98;
+}
+
+body.native-app-shell .section-copy {
+  color: var(--muted);
+}
+
+body.native-app-shell .ios-welcome-pills {
+  justify-content: flex-start;
+}
+
+body.native-app-shell .toolbar-button,
+body.native-app-shell .sound-button,
+body.native-app-shell .learn-button,
+body.native-app-shell .choice-button,
+body.native-app-shell .exercise-tab,
+body.native-app-shell .chip {
+  border: 1px solid rgba(118, 146, 235, 0.18);
+  background:
+    linear-gradient(180deg, rgba(17, 24, 45, 0.92), rgba(10, 15, 29, 0.96));
+  color: var(--page-ink);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+}
+
+body.native-app-shell .toolbar-button:hover,
+body.native-app-shell .sound-button:hover,
+body.native-app-shell .learn-button:hover,
+body.native-app-shell .choice-button:hover,
+body.native-app-shell .exercise-tab:hover,
+body.native-app-shell .chip:hover {
+  background:
+    linear-gradient(180deg, rgba(24, 33, 59, 0.98), rgba(13, 19, 37, 0.98));
+}
+
+body.native-app-shell .toolbar-button.primary,
+body.native-app-shell .toolbar-button.is-active,
+body.native-app-shell .ios-cta-button,
+body.native-app-shell .learn-button {
+  border-color: rgba(132, 194, 255, 0.28);
+  background:
+    linear-gradient(135deg, var(--tone-electric) 0%, var(--tone-electric-soft) 100%);
+  color: #f8fbff;
+  box-shadow:
+    0 20px 42px rgba(18, 90, 255, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.native-app-shell .toolbar-button.primary:hover,
+body.native-app-shell .toolbar-button.is-active:hover,
+body.native-app-shell .ios-cta-button:hover,
+body.native-app-shell .learn-button:hover {
+  background:
+    linear-gradient(135deg, #4c87ff 0%, #58d0ff 100%);
+}
+
+body.native-app-shell .learn-button.is-on {
+  border-color: rgba(123, 150, 235, 0.16);
+  background:
+    linear-gradient(180deg, rgba(21, 28, 50, 0.92), rgba(12, 17, 32, 0.98));
+  color: #dce6ff;
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+body.native-app-shell .glass-pill,
+body.native-app-shell .counter-pill,
+body.native-app-shell .lesson-step-badge,
+body.native-app-shell .lesson-status-tag,
+body.native-app-shell .difficulty-tag,
+body.native-app-shell .meta-chip {
+  background: rgba(19, 28, 51, 0.84);
+  border-color: rgba(118, 146, 235, 0.16);
+  color: #dce6ff;
+}
+
+body.native-app-shell .ios-journey-shell {
+  position: relative;
+  padding: 22px 22px 88px;
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(13, 19, 38, 0.96), rgba(8, 12, 24, 0.98));
+}
+
+body.native-app-shell .ios-journey-shell::before {
+  content: "";
+  position: absolute;
+  inset: 18px 18px auto auto;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(63, 124, 255, 0.3), transparent 68%);
+  pointer-events: none;
+}
+
+body.native-app-shell .ios-journey-shell::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 22px;
+  height: 48px;
+  background: linear-gradient(90deg, rgba(63, 124, 255, 0.1), rgba(63, 124, 255, 0.55), rgba(72, 198, 255, 0.92), rgba(63, 124, 255, 0.18));
+  clip-path: polygon(0 84%, 8% 58%, 18% 62%, 26% 22%, 36% 36%, 46% 16%, 57% 54%, 67% 44%, 76% 72%, 86% 32%, 100% 14%, 100% 100%, 0 100%);
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+body.native-app-shell .ios-journey-header {
+  grid-template-columns: 1fr;
+  justify-items: start;
+  text-align: left;
+}
+
+body.native-app-shell .ios-journey-header h3 {
+  max-width: 12ch;
+  font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem);
+  line-height: 1.02;
+}
+
+body.native-app-shell .ios-journey-track {
+  margin-top: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(118, 146, 235, 0.1);
+}
+
+body.native-app-shell .ios-journey-bar,
+body.native-app-shell .lesson-progress-bar {
+  background:
+    linear-gradient(90deg, var(--tone-electric), var(--tone-electric-soft));
+}
+
+body.native-app-shell .lesson-header {
+  position: relative;
+  justify-items: start;
+  text-align: left;
+  gap: 14px;
+  padding: 24px 26px;
+  border-radius: 30px;
+  background:
+    linear-gradient(180deg, rgba(12, 18, 34, 0.96), rgba(8, 12, 24, 0.98));
+  border: 1px solid rgba(123, 150, 235, 0.16);
+  overflow: hidden;
+}
+
+body.native-app-shell .lesson-header::before {
+  content: "";
+  position: absolute;
+  inset: -40px -30px auto auto;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(127, 92, 255, 0.2), transparent 66%);
+  pointer-events: none;
+}
+
+body.native-app-shell .lesson-header .eyebrow {
+  display: block;
+  color: #8fb4ff;
+}
+
+body.native-app-shell .lesson-header h3 {
+  max-width: 14ch;
+  font-size: clamp(1.8rem, 1.15rem + 1.6vw, 2.9rem);
+  line-height: 0.96;
+  color: var(--page-ink);
+}
+
+body.native-app-shell #lesson-summary {
+  max-width: 46ch;
+  color: var(--muted);
+}
+
+body.native-app-shell .lesson-header-actions {
+  justify-content: flex-start;
+}
+
+body.native-app-shell .exercise-tabs {
+  width: min(100%, 560px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+body.native-app-shell .exercise-tab {
+  position: relative;
+  min-height: 84px;
+  padding: 18px 22px;
+  border-radius: 24px;
+  justify-content: space-between;
+  overflow: hidden;
+  text-align: left;
+}
+
+body.native-app-shell .exercise-tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(127, 92, 255, 0.2), rgba(72, 198, 255, 0.9));
+}
+
+body.native-app-shell .exercise-tab::after {
+  content: "→";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(118, 146, 235, 0.16);
+  color: #a8d7ff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+body.native-app-shell .exercise-tab.is-active {
+  border-color: rgba(132, 194, 255, 0.3);
+  background:
+    linear-gradient(135deg, rgba(63, 124, 255, 0.94), rgba(72, 198, 255, 0.92));
+  color: #f8fbff;
+  box-shadow:
+    0 24px 48px rgba(17, 93, 255, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.native-app-shell .exercise-tab.is-active::before {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+body.native-app-shell .exercise-tab.is-active::after {
+  background: rgba(7, 11, 21, 0.82);
+  color: #f8fbff;
+}
+
+body.native-app-shell .exercise-tab.is-complete:not(.is-active)::after {
+  content: "✓";
+}
+
+body.native-app-shell .exercise-tab.is-locked {
+  opacity: 0.58;
+}
+
+body.native-app-shell .exercise-pane.is-active > * {
+  width: min(100%, 700px);
+}
+
+body.native-app-shell .view-header,
+body.native-app-shell .study-next-header {
+  justify-items: start;
+  text-align: left;
+}
+
+body.native-app-shell .glass-note {
+  background:
+    linear-gradient(180deg, rgba(14, 20, 38, 0.84), rgba(10, 15, 29, 0.9));
+  color: var(--muted);
+}
+
+body.native-app-shell .card-grid {
+  width: min(100%, 700px);
+  gap: 18px;
+}
+
+body.native-app-shell .study-card {
+  position: relative;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(13, 19, 38, 0.96), rgba(8, 12, 24, 0.98));
+}
+
+body.native-app-shell .study-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px 18px auto auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+body.native-app-shell .study-card::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  height: 42px;
+  pointer-events: none;
+  opacity: 0.92;
+  clip-path: polygon(0 82%, 8% 64%, 18% 68%, 26% 20%, 35% 36%, 46% 22%, 56% 58%, 67% 42%, 77% 72%, 88% 48%, 100% 30%, 100% 100%, 0 100%);
+}
+
+body.native-app-shell .study-card[data-tone="electric"] {
+  border-color: rgba(106, 166, 255, 0.28);
+}
+
+body.native-app-shell .study-card[data-tone="electric"]::before {
+  background: radial-gradient(circle, rgba(63, 124, 255, 0.34), transparent 66%);
+}
+
+body.native-app-shell .study-card[data-tone="electric"]::after {
+  background: linear-gradient(90deg, rgba(63, 124, 255, 0.16), rgba(72, 198, 255, 0.9), rgba(63, 124, 255, 0.12));
+}
+
+body.native-app-shell .study-card[data-tone="indigo"] {
+  border-color: rgba(151, 112, 255, 0.28);
+}
+
+body.native-app-shell .study-card[data-tone="indigo"]::before {
+  background: radial-gradient(circle, rgba(127, 92, 255, 0.32), transparent 66%);
+}
+
+body.native-app-shell .study-card[data-tone="indigo"]::after {
+  background: linear-gradient(90deg, rgba(127, 92, 255, 0.12), rgba(164, 140, 255, 0.86), rgba(127, 92, 255, 0.08));
+}
+
+body.native-app-shell .study-card[data-tone="graphite"] {
+  border-color: rgba(100, 128, 188, 0.2);
+  background:
+    linear-gradient(180deg, rgba(16, 22, 40, 0.98), rgba(10, 14, 27, 0.98));
+}
+
+body.native-app-shell .study-card[data-tone="graphite"]::before {
+  background: radial-gradient(circle, rgba(87, 120, 199, 0.22), transparent 68%);
+}
+
+body.native-app-shell .study-card[data-tone="graphite"]::after {
+  background: linear-gradient(90deg, rgba(88, 122, 208, 0.1), rgba(151, 184, 255, 0.72), rgba(88, 122, 208, 0.08));
+}
+
+body.native-app-shell .card-bisaya {
+  color: var(--page-ink);
+}
+
+body.native-app-shell .card-english,
+body.native-app-shell .card-pronunciation {
+  color: var(--muted);
+}
+
+body.native-app-shell .sound-button--round {
+  background:
+    linear-gradient(135deg, var(--tone-electric), var(--tone-electric-soft));
+  box-shadow:
+    0 18px 38px rgba(17, 93, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+body.native-app-shell .sound-button--round::before {
+  color: #f8fbff;
+}
+
+body.native-app-shell .sound-button--round:hover {
+  background:
+    linear-gradient(135deg, #4c87ff, #58d0ff);
+}
+
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel,
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(13, 19, 38, 0.96), rgba(8, 12, 24, 0.98));
+}
+
+body.native-app-shell .quiz-card::before,
+body.native-app-shell .typing-shell::before,
+body.native-app-shell .grammar-sentence::before,
+body.native-app-shell .study-next-panel::before {
+  content: "";
+  position: absolute;
+  inset: auto auto 0 0;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(63, 124, 255, 0.12), transparent 68%);
+  pointer-events: none;
+}
+
+body.native-app-shell .choice-button {
+  background:
+    linear-gradient(180deg, rgba(15, 22, 40, 0.96), rgba(10, 16, 30, 0.98));
+  color: var(--page-ink);
+}
+
+body.native-app-shell .search-shell input,
+body.native-app-shell .mode-shell select,
+body.native-app-shell .typing-input {
+  background:
+    linear-gradient(180deg, rgba(8, 13, 27, 0.98), rgba(12, 18, 34, 0.98));
+  color: var(--page-ink);
+}
+
+body.native-app-shell .search-shell input:focus,
+body.native-app-shell .mode-shell select:focus,
+body.native-app-shell .typing-input:focus {
+  box-shadow:
+    0 0 0 3px rgba(72, 198, 255, 0.16),
+    0 16px 34px rgba(0, 0, 0, 0.22);
+}
+
+body.native-app-shell .quiz-stats,
+body.native-app-shell .practice-overview {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 980px) {
+  body.macos-native-app .ios-top-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body.native-app-shell .ios-welcome-card,
+  body.native-app-shell .ios-complete-card,
+  body.native-app-shell .lesson-header,
+  body.native-app-shell .ios-journey-shell,
+  body.native-app-shell .study-card,
+  body.native-app-shell .quiz-card,
+  body.native-app-shell .practice-card,
+  body.native-app-shell .study-next-panel,
+  body.native-app-shell .typing-shell,
+  body.native-app-shell .grammar-sentence {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 24px;
+  }
+
+  body.native-app-shell .lesson-header h3,
+  body.native-app-shell .ios-welcome-card h2,
+  body.native-app-shell .ios-complete-card h2 {
+    max-width: none;
+  }
+}
+
+body.native-app-shell {
+  --native-shell-width: 920px;
+  --native-content-width: 700px;
+}
+
+body.native-app-shell.ios-welcome-active .workspace,
+body.native-app-shell.ios-modal-active .workspace {
+  pointer-events: none;
+  user-select: none;
+}
+
+body.native-app-shell .lesson-shell {
+  width: min(100%, var(--native-shell-width));
+  margin: 0 auto;
+}
+
+body.macos-native-app .workspace {
+  padding: clamp(18px, 2.6vw, 28px);
+}
+
+body.macos-native-app .lesson-shell {
+  height: 100%;
+  border-radius: 36px;
+  background:
+    linear-gradient(180deg, rgba(9, 14, 28, 0.8), rgba(6, 10, 20, 0.9));
+  border: 1px solid rgba(123, 150, 235, 0.16);
+  backdrop-filter: blur(28px);
+}
+
+body.macos-native-app .ios-top-bar,
+body.macos-native-app #lesson-empty,
+body.macos-native-app .lesson-body {
+  width: min(100%, var(--native-content-width));
+  margin-inline: auto;
+}
+
+body.macos-native-app .ios-top-bar {
+  grid-template-columns: 1fr;
+  padding: 28px 0 14px;
+}
+
+body.macos-native-app #lesson-empty {
+  margin: 10px auto 26px;
+}
+
+body.macos-native-app .lesson-body {
+  padding: 10px 0 28px;
+}
+
+body.native-app-shell .lesson-header-actions {
+  width: 100%;
+  align-items: center;
+}
+
+body.native-app-shell .study-next-actions,
+body.native-app-shell .quiz-actions,
+body.native-app-shell .ios-complete-actions {
+  justify-content: flex-start;
+}
+
+body.native-app-shell .ios-complete-actions {
+  gap: 12px;
+}
+
+body.native-app-shell .study-next-actions .toolbar-button,
+body.native-app-shell .quiz-actions .toolbar-button,
+body.native-app-shell .ios-complete-actions .toolbar-button {
+  min-width: 170px;
+}
+
+@media (max-width: 720px) {
+  body.native-app-shell .study-next-actions,
+  body.native-app-shell .quiz-actions,
+  body.native-app-shell .ios-complete-actions {
+    justify-content: stretch;
+  }
+
+  body.native-app-shell .study-next-actions .toolbar-button,
+  body.native-app-shell .quiz-actions .toolbar-button,
+  body.native-app-shell .ios-complete-actions .toolbar-button {
+    width: 100%;
+    min-width: 0;
+  }
+}

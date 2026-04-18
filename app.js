@@ -6,6 +6,10 @@ function isNativeIOSApp() {
   return nativeAppShell && window.BISAYA_BUDDY_PLATFORM === "ios";
 }
 
+function isNativeMacApp() {
+  return nativeAppShell && window.BISAYA_BUDDY_PLATFORM === "macos";
+}
+
 const storageKeys = {
   learned: "bisaya-buddy-learned",
   bestQuiz: "bisaya-buddy-best-quiz",
@@ -177,10 +181,10 @@ function readThemePreference() {
       return stored;
     }
   } catch (error) {
-    return prefersDarkTheme() ? "dark" : "light";
+    return nativeAppShell ? "dark" : prefersDarkTheme() ? "dark" : "light";
   }
 
-  return prefersDarkTheme() ? "dark" : "light";
+  return nativeAppShell ? "dark" : prefersDarkTheme() ? "dark" : "light";
 }
 
 function hasStoredThemePreference() {
@@ -226,7 +230,7 @@ const state = {
   theme: readThemePreference(),
   themePreferenceSaved: hasStoredThemePreference(),
   deferredInstallPrompt: null,
-  iosWelcomeVisible: isNativeIOSApp(),
+  iosWelcomeVisible: nativeAppShell,
   iosCompletionModal: null,
   lessonQuiz: createEmptyQuizState(),
   typingSession: createEmptyPracticeState(),
@@ -407,7 +411,27 @@ function nativePlatformLabel() {
 }
 
 function lessonLabel(step) {
-  return `${isNativeIOSApp() ? "Lesson" : "Step"} ${step}`;
+  return `${nativeAppShell ? "Lesson" : "Step"} ${step}`;
+}
+
+function nativeLessonCallToAction() {
+  return nativeAppShell ? "lesson" : "step";
+}
+
+function exerciseIndex(exerciseName) {
+  return ["study", "quiz", "typing", "grammar"].indexOf(exerciseName) + 1;
+}
+
+function exerciseButtonLabel(exerciseName) {
+  const title = labelForExercise(exerciseName);
+  const index = exerciseIndex(exerciseName);
+  return nativeAppShell ? `${String(index).padStart(2, "0")} ${title}` : `Step ${index} ${title}`;
+}
+
+function exerciseCopyLabel(exerciseName) {
+  const title = labelForExercise(exerciseName);
+  const index = exerciseIndex(exerciseName);
+  return nativeAppShell ? title : `Step ${index} ${title}`;
 }
 
 function formatLessonHeading(lessonId) {
@@ -420,7 +444,7 @@ function getIOSPrimaryLessonId() {
 }
 
 function renderIOSWelcomeScreen() {
-  if (!isNativeIOSApp() || !elements.iosWelcomeScreen) {
+  if (!nativeAppShell || !elements.iosWelcomeScreen) {
     return;
   }
 
@@ -443,7 +467,7 @@ function renderIOSWelcomeScreen() {
 }
 
 function renderIOSCompletionModal() {
-  if (!isNativeIOSApp() || !elements.iosCompleteModal) {
+  if (!nativeAppShell || !elements.iosCompleteModal) {
     return;
   }
 
@@ -470,10 +494,12 @@ function renderIOSCompletionModal() {
 }
 
 function renderIOSNativeExperience() {
-  const enabled = isNativeIOSApp();
-  document.body.classList.toggle("ios-native-app", enabled);
+  const iosEnabled = isNativeIOSApp();
+  document.body.classList.toggle("native-app-shell", nativeAppShell);
+  document.body.classList.toggle("ios-native-app", iosEnabled);
+  document.body.classList.toggle("macos-native-app", isNativeMacApp());
 
-  if (!enabled) {
+  if (!nativeAppShell) {
     return;
   }
 
@@ -482,7 +508,7 @@ function renderIOSNativeExperience() {
 }
 
 function renderIOSJourneyHeader() {
-  if (!isNativeIOSApp() || !elements.iosJourneyTitle || !elements.iosJourneyBar) {
+  if (!nativeAppShell || !elements.iosJourneyTitle || !elements.iosJourneyBar) {
     return;
   }
 
@@ -581,6 +607,25 @@ function logIOSOverflowIfNeeded() {
   });
 }
 
+function primeNativeMacLessonFocus() {
+  if (!isNativeMacApp() || state.startedLesson || state.iosWelcomeVisible) {
+    return;
+  }
+
+  const lessonId = getCurrentPathLesson()?.id || orderedLessons[0]?.id || null;
+  if (!lessonId) {
+    return;
+  }
+
+  state.lesson = lessonId;
+  state.startedLesson = lessonId;
+  state.lessonExercise = getRecommendedExerciseForLesson(lessonId);
+  state.lessonQuiz = createEmptyQuizState(lessonId, elements.lessonQuizMode.value);
+  state.typingSession = createEmptyPracticeState(lessonId);
+  state.grammarSession = createEmptyPracticeState(lessonId);
+  state.tab = "lesson";
+}
+
 function init() {
   registerGlobalErrorHandlers();
   logNative(
@@ -591,6 +636,7 @@ function init() {
   registerSystemThemeEvents();
   configurePlatformUI();
   bindEvents();
+  primeNativeMacLessonFocus();
   renderApp();
   registerInstallEvents();
   registerServiceWorker();
@@ -711,7 +757,7 @@ function bindEvents() {
 
   elements.backToCourse.addEventListener("click", () => {
     if (
-      isNativeIOSApp() &&
+      nativeAppShell &&
       state.startedLesson &&
       isLessonFullyCompleted(state.startedLesson)
     ) {
@@ -1002,7 +1048,7 @@ function renderApp() {
   renderIOSJourneyHeader();
   syncHeaderStats();
 
-  if (isNativeIOSApp()) {
+  if (nativeAppShell) {
     state.tab = "lesson";
   }
 
@@ -1019,6 +1065,10 @@ function renderScopeControls() {
 }
 
 function registerSystemThemeEvents() {
+  if (nativeAppShell) {
+    return;
+  }
+
   if (!window.matchMedia) {
     return;
   }
@@ -1064,7 +1114,13 @@ function updateThemeMeta() {
     return;
   }
 
-  const metaColor = state.theme === "dark" ? "#252b26" : "#ece6db";
+  const metaColor = nativeAppShell
+    ? state.theme === "dark"
+      ? "#0b1020"
+      : "#e7f0ff"
+    : state.theme === "dark"
+      ? "#252b26"
+      : "#ece6db";
   elements.themeMeta.setAttribute("content", metaColor);
 }
 
@@ -1439,31 +1495,31 @@ function getExerciseStepState(lessonId) {
 
   return {
     study: {
-      label: "Step 1 Study",
+      label: exerciseButtonLabel("study"),
       unlocked: true,
       complete: summary.learnedPercent === 100,
       requirement: "Mark every study card in this lesson as learned.",
     },
     quiz: {
-      label: "Step 2 Quiz",
+      label: exerciseButtonLabel("quiz"),
       unlocked: summary.learnedPercent === 100,
       complete: summary.quizBest === 100,
-      requirement: "Complete Step 1 Study at 100% first.",
+      requirement: `Complete ${exerciseCopyLabel("study")} at 100% first.`,
     },
     typing: {
-      label: "Step 3 Typing",
+      label: exerciseButtonLabel("typing"),
       unlocked: summary.learnedPercent === 100 && summary.quizBest === 100,
       complete: summary.typingBest === 100,
-      requirement: "Complete Step 2 Quiz at 100% first.",
+      requirement: `Complete ${exerciseCopyLabel("quiz")} at 100% first.`,
     },
     grammar: {
-      label: "Step 4 Grammar",
+      label: exerciseButtonLabel("grammar"),
       unlocked:
         summary.learnedPercent === 100 &&
         summary.quizBest === 100 &&
         summary.typingBest === 100,
       complete: summary.grammarBest === 100,
-      requirement: "Complete Step 3 Typing at 100% first.",
+      requirement: `Complete ${exerciseCopyLabel("typing")} at 100% first.`,
     },
   };
 }
@@ -1817,7 +1873,7 @@ function switchLessonExercise(exerciseName) {
 
 function openPracticeFromStudy(exerciseName) {
   if (!state.startedLesson) {
-    setAppStatus("Start a step first.");
+    setAppStatus(`Start a ${nativeLessonCallToAction()} first.`);
     return;
   }
 
@@ -1841,6 +1897,7 @@ function renderLessonExerciseState() {
   elements.exerciseTabs.forEach((button) => {
     const exerciseName = button.dataset.exercise;
     const stepState = exerciseSteps?.[exerciseName];
+    button.textContent = stepState?.label || exerciseButtonLabel(exerciseName);
 
     button.classList.toggle("is-active", exerciseName === state.lessonExercise);
     button.classList.toggle("is-complete", Boolean(stepState?.complete));
@@ -1994,19 +2051,40 @@ function renderCourseCards() {
 
 function renderCardSet(container, entries) {
   container.innerHTML = entries
-    .map((entry) => createCardMarkup(entry))
+    .map((entry, index) => createCardMarkup(entry, index))
     .join("");
 }
 
-function createCardMarkup(entry) {
+function createCardMarkup(entry, index = 0) {
   const learned = state.learned.has(entry.id);
   const lesson = getLessonMeta(entry.lesson);
+  const tones = ["electric", "indigo", "graphite"];
+  const tone = tones[index % tones.length];
   return `
-    <article class="study-card">
+    <article class="study-card" data-tone="${tone}">
       <div class="card-top">
+        <span class="meta-chip">${entry.category}</span>
+        <button
+          class="sound-button sound-button--round"
+          type="button"
+          data-action="play-audio"
+          data-id="${entry.id}"
+          aria-label="Play audio for ${entry.bisaya}"
+        >
+          Play
+        </button>
+      </div>
+      <div class="card-copy">
         <div>
           <h3 class="card-bisaya">${entry.bisaya}</h3>
           <p class="card-english">${entry.english}</p>
+          <p class="card-pronunciation">Pronunciation: ${entry.pronunciation}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <span class="meta-chip">${lessonLabel(lesson.step)}</span>
+          <span class="difficulty-tag ${difficultyClassName(lesson.difficulty)}">${lesson.difficulty}</span>
         </div>
         <button
           class="learn-button ${learned ? "is-on" : ""}"
@@ -2015,22 +2093,6 @@ function createCardMarkup(entry) {
           data-id="${entry.id}"
         >
           ${learned ? "Learned" : "Mark learned"}
-        </button>
-      </div>
-      <p class="card-pronunciation">Pronunciation: ${entry.pronunciation}</p>
-      <div class="card-meta">
-        <span class="meta-chip">Step ${lesson.step}</span>
-        <span class="difficulty-tag ${difficultyClassName(lesson.difficulty)}">${lesson.difficulty}</span>
-        <span class="meta-chip">${entry.category}</span>
-      </div>
-      <div class="card-actions">
-        <button
-          class="sound-button"
-          type="button"
-          data-action="play-audio"
-          data-id="${entry.id}"
-        >
-          Play audio
         </button>
       </div>
     </article>
@@ -2125,19 +2187,23 @@ function startSelectedLesson() {
 function renderLessonWorkspace() {
   const lessonId = state.startedLesson;
   const hasLesson = Boolean(lessonId && lessonId !== "All lessons");
-  const lessonUnit = isNativeIOSApp() ? "Lesson" : "Step";
+  const lessonUnit = nativeAppShell ? "Lesson" : "Step";
 
   elements.lessonEmpty.hidden = hasLesson;
   elements.lessonBody.hidden = !hasLesson;
   renderLessonExerciseState();
 
   if (!hasLesson) {
-    elements.lessonTitle.textContent = `Choose a ${lessonUnit.toLowerCase()} and press start`;
+    elements.lessonTitle.textContent = nativeAppShell
+      ? "Your current lesson will appear here"
+      : `Choose a ${lessonUnit.toLowerCase()} and press start`;
     elements.lessonSummary.textContent =
-      `Each ${lessonUnit.toLowerCase()} opens its own calm workspace. Move in order through Study, Quiz, Typing, and Grammar.`;
+      nativeAppShell
+        ? "Open one lesson at a time and move through Study, Quiz, Typing, and Grammar in order."
+        : `Each ${lessonUnit.toLowerCase()} opens its own calm workspace. Move in order through Study, Quiz, Typing, and Grammar.`;
     elements.lessonStatus.textContent = "Not started";
     elements.lessonStatus.className = "glass-pill status-pill is-ready";
-    elements.backToCourse.hidden = Boolean(isNativeIOSApp());
+    elements.backToCourse.hidden = nativeAppShell;
     elements.backToCourse.textContent = "Back to course";
     elements.lessonProgressText.textContent = "0% complete";
     elements.lessonProgressBar.style.width = "0%";
@@ -2173,11 +2239,11 @@ function renderLessonWorkspace() {
     .join(" ");
   elements.lessonStatus.textContent = summary.status;
   elements.lessonStatus.className = `glass-pill status-pill ${statusClassName(summary.status)}`;
-  elements.backToCourse.hidden = isNativeIOSApp()
+  elements.backToCourse.hidden = nativeAppShell
     ? !(summary.completed && nextLesson)
     : false;
   elements.backToCourse.textContent =
-    isNativeIOSApp() && summary.completed && nextLesson
+    nativeAppShell && summary.completed && nextLesson
       ? `Get to ${lessonLabel(nextLesson.step)}`
       : "Back to course";
   elements.lessonProgressText.textContent = `${summary.overall}% complete`;
@@ -2252,13 +2318,17 @@ function isLessonPracticeUnlocked(summary) {
 
 function renderStudyNextPanel(summary = null) {
   if (!summary) {
-    elements.studyNextTitle.textContent = "Finish Step 1 Study to unlock Step 2 Quiz.";
+    elements.studyNextTitle.textContent = `Finish ${exerciseCopyLabel("study")} to unlock ${exerciseCopyLabel(
+      "quiz"
+    )}.`;
     elements.studyNextCopy.textContent =
-      "Once a step is active, this area shows exactly which part comes next and what still needs to reach 100%.";
+      nativeAppShell
+        ? "Once a lesson is open, this area shows exactly what comes next and what still needs to reach 100%."
+        : "Once a step is active, this area shows exactly which part comes next and what still needs to reach 100%.";
     elements.studyNextPill.textContent = "0 / 4 parts complete";
     elements.studyNavButtons.forEach((button) => {
       button.disabled = true;
-      button.title = "Start a step first.";
+      button.title = nativeAppShell ? "Open a lesson first." : "Start a step first.";
     });
     return;
   }
@@ -2275,37 +2345,51 @@ function renderStudyNextPanel(summary = null) {
 
   if (summary.completed) {
     elements.studyNextTitle.textContent = nextLesson
-      ? `Step ${summary.step} complete. Step ${nextLesson.step} is now unlocked.`
-      : "Every step in the course is complete.";
+      ? `${lessonLabel(summary.step)} complete. ${lessonLabel(nextLesson.step)} is now unlocked.`
+      : nativeAppShell
+        ? "Every lesson in the course is complete."
+        : "Every step in the course is complete.";
     elements.studyNextCopy.textContent = nextLesson
-      ? `You can review this lesson at any time, or go back and start Step ${nextLesson.step} · ${nextLesson.shortTitle}.`
+      ? `You can review this lesson at any time, or go straight to ${lessonLabel(
+          nextLesson.step
+        )} · ${nextLesson.shortTitle}.`
       : "You can review any part of this lesson whenever you want.";
   } else if (!summary.studyComplete) {
     const remaining = Math.max(summary.cardsCount - summary.learnedCount, 0);
-    elements.studyNextTitle.textContent = "Finish Step 1 Study first.";
+    elements.studyNextTitle.textContent = `Finish ${exerciseCopyLabel("study")} first.`;
     elements.studyNextCopy.textContent = `${
       summary.learnedCount
     } of ${summary.cardsCount} cards are marked as learned. Mark the remaining ${remaining} ${
       remaining === 1 ? "card" : "cards"
-    } to unlock Step 2 Quiz.`;
+    } to unlock ${exerciseCopyLabel("quiz")}.`;
   } else if (!summary.quizComplete) {
-    elements.studyNextTitle.textContent = "Step 2 Quiz is unlocked.";
+    elements.studyNextTitle.textContent = `${exerciseCopyLabel("quiz")} is unlocked.`;
     elements.studyNextCopy.textContent =
       summary.quizBest > 0
-        ? `Your best quiz score is ${summary.quizBest}%. Reach 100% to unlock Step 3 Typing.`
-        : "Use the quiz to repeat meanings in context. Reach 100% to unlock Step 3 Typing.";
+        ? `Your best quiz score is ${summary.quizBest}%. Reach 100% to unlock ${exerciseCopyLabel(
+            "typing"
+          )}.`
+        : `Use the quiz to repeat meanings in context. Reach 100% to unlock ${exerciseCopyLabel(
+            "typing"
+          )}.`;
   } else if (!summary.typingComplete) {
-    elements.studyNextTitle.textContent = "Step 3 Typing is unlocked.";
+    elements.studyNextTitle.textContent = `${exerciseCopyLabel("typing")} is unlocked.`;
     elements.studyNextCopy.textContent =
       summary.typingBest > 0
-        ? `Your best typing score is ${summary.typingBest}%. Reach 100% to unlock Step 4 Grammar.`
-        : "Type the phrases exactly so they settle in your memory. Reach 100% to unlock Step 4 Grammar.";
+        ? `Your best typing score is ${summary.typingBest}%. Reach 100% to unlock ${exerciseCopyLabel(
+            "grammar"
+          )}.`
+        : `Type the phrases exactly so they settle in your memory. Reach 100% to unlock ${exerciseCopyLabel(
+            "grammar"
+          )}.`;
   } else {
-    elements.studyNextTitle.textContent = "Step 4 Grammar is unlocked.";
+    elements.studyNextTitle.textContent = `${exerciseCopyLabel("grammar")} is unlocked.`;
     elements.studyNextCopy.textContent =
       summary.grammarBest > 0
         ? `Your best grammar score is ${summary.grammarBest}%. Reach 100% to unlock the next lesson.`
-        : "Finish the last practice step at 100% to unlock the next lesson.";
+        : nativeAppShell
+          ? "Finish the last practice lane at 100% to unlock the next lesson."
+          : "Finish the last practice step at 100% to unlock the next lesson.";
   }
 
   elements.studyNextPill.textContent = `${completedParts} / 4 parts complete`;
@@ -2518,7 +2602,7 @@ function getLessonQuizPool() {
 
 function startLessonQuiz() {
   if (!state.startedLesson) {
-    setAppStatus("Start a step first.");
+    setAppStatus(`Start a ${nativeLessonCallToAction()} first.`);
     return;
   }
 
@@ -2581,9 +2665,13 @@ function renderLessonQuizCard() {
   elements.lessonQuizFeedback.className = "quiz-feedback";
 
   if (!state.startedLesson) {
-    elements.lessonQuizPrompt.textContent = "Choose a step to start.";
+    elements.lessonQuizPrompt.textContent = nativeAppShell
+      ? "Choose a lesson to start."
+      : "Choose a step to start.";
     elements.lessonQuizHelper.textContent =
-      "Lesson quizzes stay inside the dedicated step workspace.";
+      nativeAppShell
+        ? "Lesson quizzes stay inside the focused lesson workspace."
+        : "Lesson quizzes stay inside the dedicated step workspace.";
     elements.lessonQuizOptions.innerHTML = "";
     elements.lessonQuizFeedback.textContent = "";
     elements.lessonStartQuiz.hidden = false;
@@ -2596,8 +2684,8 @@ function renderLessonQuizCard() {
     elements.lessonQuizPrompt.textContent = `Quiz finished. Final score: ${quiz.finalPercent}%`;
     elements.lessonQuizHelper.textContent =
       quiz.finalPercent >= 100
-        ? "Perfect. Step 3 Typing is now unlocked."
-        : "Start again and reach 100% to unlock Step 3 Typing.";
+        ? `Perfect. ${exerciseCopyLabel("typing")} is now unlocked.`
+        : `Start again and reach 100% to unlock ${exerciseCopyLabel("typing")}.`;
     elements.lessonQuizOptions.innerHTML = "";
     elements.lessonQuizFeedback.textContent = "";
     elements.lessonStartQuiz.hidden = false;
@@ -2609,7 +2697,9 @@ function renderLessonQuizCard() {
   if (!quiz.current) {
     elements.lessonQuizPrompt.textContent = "Choose a quiz mode to begin.";
     elements.lessonQuizHelper.textContent =
-      `This quiz uses ${quiz.totalQuestions} adaptive questions, repeats phrases to help them stick, and needs 100% to unlock Step 3 Typing.`;
+      `This quiz uses ${quiz.totalQuestions} adaptive questions, repeats phrases to help them stick, and needs 100% to unlock ${exerciseCopyLabel(
+        "typing"
+      )}.`;
     elements.lessonQuizOptions.innerHTML = "";
     elements.lessonQuizFeedback.textContent = "";
     elements.lessonStartQuiz.hidden = false;
@@ -2727,14 +2817,18 @@ function finishLessonQuiz() {
 
   setAppStatus(
     finalPercent === 100
-      ? `Step 2 Quiz complete for ${getLessonMeta(lessonId).shortTitle}. Step 3 Typing is now unlocked.`
-      : `Quiz score saved at ${finalPercent}%. Reach 100% to unlock Step 3 Typing.`
+      ? `${exerciseCopyLabel("quiz")} complete for ${getLessonMeta(lessonId).shortTitle}. ${exerciseCopyLabel(
+          "typing"
+        )} is now unlocked.`
+      : `Quiz score saved at ${finalPercent}%. Reach 100% to unlock ${exerciseCopyLabel(
+          "typing"
+        )}.`
   );
 }
 
 function startTypingSession() {
   if (!state.startedLesson) {
-    setAppStatus("Start a step first.");
+    setAppStatus(`Start a ${nativeLessonCallToAction()} first.`);
     return;
   }
 
@@ -2795,7 +2889,9 @@ function renderTypingPractice() {
   if (!state.startedLesson) {
     elements.typingPrompt.textContent = "Type the Bisaya phrase from the English clue.";
     elements.typingHelper.textContent =
-      "Start a step first to unlock the typing coach.";
+      nativeAppShell
+        ? "Open a lesson first to unlock the typing coach."
+        : "Start a step first to unlock the typing coach.";
     elements.typingInput.value = "";
     elements.typingInput.disabled = true;
     return;
@@ -2805,8 +2901,10 @@ function renderTypingPractice() {
     elements.typingPrompt.textContent = `Typing complete. Final score: ${session.finalPercent}%`;
     elements.typingHelper.textContent =
       session.finalPercent >= 100
-        ? "Perfect. Step 4 Grammar is now unlocked."
-        : "Use Start typing to run the step again and reach 100% for Step 4 Grammar.";
+        ? `Perfect. ${exerciseCopyLabel("grammar")} is now unlocked.`
+        : `Use Start typing to run the practice again and reach 100% for ${exerciseCopyLabel(
+            "grammar"
+          )}.`;
     elements.typingInput.disabled = true;
     elements.nextTyping.hidden = false;
     elements.nextTyping.disabled = false;
@@ -2938,14 +3036,18 @@ function finishTypingSession() {
 
   setAppStatus(
     finalPercent === 100
-      ? `Step 3 Typing complete for ${getLessonMeta(lessonId).shortTitle}. Step 4 Grammar is now unlocked.`
-      : `Typing score saved at ${finalPercent}%. Reach 100% to unlock Step 4 Grammar.`
+      ? `${exerciseCopyLabel("typing")} complete for ${getLessonMeta(lessonId).shortTitle}. ${exerciseCopyLabel(
+          "grammar"
+        )} is now unlocked.`
+      : `Typing score saved at ${finalPercent}%. Reach 100% to unlock ${exerciseCopyLabel(
+          "grammar"
+        )}.`
   );
 }
 
 function startGrammarSession() {
   if (!state.startedLesson) {
-    setAppStatus("Start a step first.");
+    setAppStatus(`Start a ${nativeLessonCallToAction()} first.`);
     return;
   }
 
@@ -3012,7 +3114,9 @@ function renderGrammarPractice() {
   if (!state.startedLesson) {
     elements.grammarPrompt.textContent = "Fill in the missing Bisaya word.";
     elements.grammarHelper.textContent =
-      "Start a step first to unlock grammar exercises.";
+      nativeAppShell
+        ? "Open a lesson first to unlock grammar practice."
+        : "Start a step first to unlock grammar exercises.";
     elements.grammarSentence.textContent =
       "The sentence with a blank will appear here.";
     elements.grammarInput.value = "";
@@ -3173,7 +3277,7 @@ function finishGrammarSession() {
   const hasJustCompleted =
     finalPercent === 100 && !wasCompleted && isLessonFullyCompleted(lessonId);
 
-  if (hasJustCompleted && isNativeIOSApp()) {
+  if (hasJustCompleted && nativeAppShell) {
     state.iosCompletionModal = {
       lessonId,
       nextLessonId,
@@ -3184,8 +3288,10 @@ function finishGrammarSession() {
   setAppStatus(
     finalPercent === 100
       ? nextLesson
-        ? `Step 4 Grammar complete for ${getLessonMeta(lessonId).shortTitle}. Step ${nextLesson.step} is now unlocked.`
-        : "Step 4 Grammar complete. You finished the full course."
+        ? `${exerciseCopyLabel("grammar")} complete for ${
+            getLessonMeta(lessonId).shortTitle
+          }. ${lessonLabel(nextLesson.step)} is now unlocked.`
+        : `${exerciseCopyLabel("grammar")} complete. You finished the full course.`
       : `Grammar score saved at ${finalPercent}%. Reach 100% to unlock the next lesson.`
   );
 }

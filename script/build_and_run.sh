@@ -6,6 +6,8 @@ EXECUTABLE_NAME="BisayaBuddyMacApp"
 DISPLAY_NAME="Bisaya Buddy"
 BUNDLE_ID="com.vincenth.bisayabuddy"
 MIN_SYSTEM_VERSION="14.0"
+MARKETING_VERSION="1.1.0"
+BUILD_NUMBER="2"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
@@ -54,6 +56,10 @@ cat >"$INFO_PLIST" <<PLIST
   <string>$DISPLAY_NAME</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
+  <key>CFBundleShortVersionString</key>
+  <string>$MARKETING_VERSION</string>
+  <key>CFBundleVersion</key>
+  <string>$BUILD_NUMBER</string>
   <key>LSMinimumSystemVersion</key>
   <string>$MIN_SYSTEM_VERSION</string>
   <key>NSHighResolutionCapable</key>

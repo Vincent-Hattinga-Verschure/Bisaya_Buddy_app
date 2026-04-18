@@ -1,4 +1,5 @@
 import AppKit
+import OSLog
 import SwiftUI
 
 final class AppDelegate: NSObject, NSApplicationDelegate {

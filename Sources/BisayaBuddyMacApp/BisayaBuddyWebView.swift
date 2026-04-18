@@ -229,7 +229,9 @@ private extension BisayaBuddyWebView {
     let configuration = WKWebViewConfiguration()
     configuration.defaultWebpagePreferences.allowsContentJavaScript = true
     configuration.mediaTypesRequiringUserActionForPlayback = []
+    #if os(iOS)
     configuration.allowsInlineMediaPlayback = true
+    #endif
     configuration.userContentController.add(context.coordinator, name: "bisayaLog")
     configuration.userContentController.add(context.coordinator, name: "bisayaAudio")
     configuration.userContentController.addUserScript(
@@ -242,8 +244,8 @@ private extension BisayaBuddyWebView {
 
     let webView = WKWebView(frame: .zero, configuration: configuration)
     webView.navigationDelegate = context.coordinator
-    webView.isOpaque = false
     #if os(iOS)
+    webView.isOpaque = false
     webView.backgroundColor = .clear
     webView.scrollView.backgroundColor = .clear
     webView.scrollView.contentInsetAdjustmentBehavior = .never
