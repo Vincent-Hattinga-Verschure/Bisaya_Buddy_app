@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Learn Bisaya with English translations, pronunciation guides, audio, and quizzes."
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#ece6db" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Bisaya Buddy" />
+    <title>Bisaya Buddy</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon-180.png" />
+    <script>
+      (() => {
+        const storageKey = "bisaya-buddy-theme";
+        let theme = "light";
+
+        try {
+          const stored = window.localStorage.getItem(storageKey);
+          if (stored === "\"dark\"" || stored === "\"light\"") {
+            theme = JSON.parse(stored);
+          } else if (stored === "dark" || stored === "light") {
+            theme = stored;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            theme = "dark";
+          }
+        } catch (error) {
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            theme = "dark";
+          }
+        }
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="lesson-data.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="window-shell">
+      <section id="ios-welcome-screen" class="ios-welcome-screen" hidden>
+        <div class="ios-welcome-card material-panel">
+          <p class="eyebrow">Bisaya Buddy</p>
+          <h2>Learn Bisaya one lesson at a time.</h2>
+          <p class="section-copy">
+            A calmer iPhone experience with one focused lesson, full-screen
+            practice, and a clear next step after each lesson is complete.
+          </p>
+          <div class="ios-welcome-pills">
+            <span id="ios-welcome-lesson" class="glass-pill">Lesson 1</span>
+            <span class="glass-pill">Full-screen focus</span>
+          </div>
+          <button
+            id="ios-welcome-start"
+            class="toolbar-button primary ios-cta-button"
+            type="button"
+          >
+            Start Learning Bisaya
+          </button>
+        </div>
+      </section>
+
+      <section id="ios-complete-modal" class="ios-complete-modal" hidden>
+        <div
+          class="ios-complete-card material-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="ios-complete-title"
+        >
+          <p class="eyebrow">Lesson Complete</p>
+          <h2 id="ios-complete-title">Congratulations, you finished Lesson 1</h2>
+          <p id="ios-complete-copy" class="section-copy">
+            Lesson 2 is ready whenever you want to continue.
+          </p>
+          <div class="ios-complete-actions">
+            <button
+              id="ios-complete-next"
+              class="toolbar-button primary ios-cta-button"
+              type="button"
+            >
+              Get to Lesson 2
+            </button>
+            <button id="ios-complete-stay" class="toolbar-button" type="button">
+              Stay on this lesson
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <header class="window-chrome glass-panel">
+        <div class="window-title-group">
+          <p class="window-kicker">Calm Bisaya Study Companion</p>
+          <h1 class="window-title">Bisaya Buddy</h1>
+        </div>
+        <div class="window-actions">
+          <button
+            id="stats-toggle"
+            class="toolbar-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="stats-panel"
+          >
+            Statistics
+          </button>
+          <button id="theme-toggle" class="toolbar-button theme-toggle" type="button">
+            Theme: Light
+          </button>
+          <button id="install-app" class="toolbar-button primary" type="button" hidden>
+            Install app
+          </button>
+          <button id="share-app" class="toolbar-button" type="button">
+            Share app
+          </button>
+        </div>
+      </header>
+
+      <section class="stats-strip">
+        <aside id="stats-panel" class="stats-panel material-panel" hidden>
+          <div class="stats-panel-header">
+            <div>
+              <p class="eyebrow">Statistics</p>
+              <h3 id="stats-title">Course progress</h3>
+              <p id="stats-copy" class="section-copy">
+                Track your progress here. Each practice session now uses 35 adaptive questions.
+              </p>
+            </div>
+            <span id="stats-focus-pill" class="glass-pill">0 focus items</span>
+          </div>
+
+          <div class="stats-grid">
+            <div class="mini-stat">
+              <span class="mini-label">Completed Steps</span>
+              <strong id="stats-completed-steps">0 / 0</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-label">Current Step</span>
+              <strong id="stats-current-step">0 · 0%</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-label">Practice Accuracy</span>
+              <strong id="stats-accuracy">0%</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-label">Total Attempts</span>
+              <strong id="stats-attempts">0</strong>
+            </div>
+          </div>
+
+          <div>
+            <p class="mini-label">Current Step Breakdown</p>
+            <div id="stats-track-list" class="stats-track-list"></div>
+          </div>
+
+          <div>
+            <p class="mini-label">Needs More Practice</p>
+            <div id="stats-focus-list" class="stats-focus-list"></div>
+          </div>
+
+          <p id="stats-recommendation" class="stats-recommendation">
+            Statistics will appear here once you start practicing.
+          </p>
+        </aside>
+      </section>
+
+      <section class="floating-toolbar glass-panel">
+        <div class="tabs" role="tablist" aria-label="App sections">
+          <button class="tab is-active" type="button" data-tab="course">
+            Course
+          </button>
+          <button class="tab" type="button" data-tab="lesson">Practice Space</button>
+        </div>
+
+        <label class="search-shell" aria-label="Search the deck">
+          <span class="search-label">Search</span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search Bisaya or English"
+          />
+        </label>
+
+        <button id="clear-filters" class="toolbar-button" type="button">
+          Clear filters
+        </button>
+      </section>
+
+      <div class="workspace">
+        <aside class="sidebar glass-panel">
+          <section class="sidebar-section">
+            <div class="section-heading">
+              <p class="section-kicker">Learning Path</p>
+              <span id="lesson-count" class="counter-pill">0</span>
+            </div>
+            <div id="lesson-list" class="lesson-list"></div>
+          </section>
+
+          <section class="sidebar-section">
+            <div class="section-heading">
+              <p class="section-kicker">Categories</p>
+              <span id="card-count" class="counter-pill">0</span>
+            </div>
+            <div id="category-list" class="chip-list"></div>
+          </section>
+
+          <section class="sidebar-section sidebar-foot">
+            <div class="mini-stat-stack">
+              <div class="mini-stat">
+                <span class="mini-label">Learned</span>
+                <strong id="learned-count">0</strong>
+              </div>
+              <div class="mini-stat">
+                <span class="mini-label">Best Quiz</span>
+                <strong id="best-score">0</strong>
+              </div>
+            </div>
+
+            <p id="app-status" class="app-status">
+              Ready as a shareable web app. For full install support, open it on
+              localhost or a secure https link.
+            </p>
+          </section>
+        </aside>
+
+        <main class="content-region">
+          <section class="hero-panel material-panel">
+            <div class="hero-copy">
+              <p class="eyebrow">Steady Study</p>
+              <h2>A quieter place to learn Bisaya one lesson at a time.</h2>
+              <p class="hero-text">
+                Choose one lesson, mark phrases as learned, and move into quiz,
+                typing, and grammar practice with gentle repetition and
+                real-life context. The layout is designed to feel calm, slow,
+                and easy to stay with.
+              </p>
+            </div>
+
+            <div class="hero-badges">
+              <span id="active-lesson" class="glass-pill">All lessons</span>
+              <span id="active-category" class="glass-pill">All categories</span>
+              <span id="active-count" class="glass-pill">0 visible cards</span>
+            </div>
+
+            <div class="hero-actions">
+              <span id="selected-lesson-status" class="glass-pill">Not started</span>
+              <span id="selected-lesson-progress" class="glass-pill">0% step progress</span>
+              <button id="start-selected-lesson" class="toolbar-button primary" type="button">
+                Start current step
+              </button>
+            </div>
+          </section>
+
+          <section class="path-panel material-panel">
+            <div class="path-header">
+              <div>
+                <p class="eyebrow">Start Here</p>
+                <h3 id="path-title">Step 1 · Core words</h3>
+                <p id="path-copy" class="section-copy">
+                  Finish each step in order. You only unlock the next lesson after
+                  the current step reaches 100% in Study, Quiz, Typing, and Grammar.
+                </p>
+              </div>
+              <div class="path-badges">
+                <span id="path-step-pill" class="glass-pill">Step 1 of 20</span>
+                <span id="path-difficulty" class="difficulty-tag starter">Starter</span>
+              </div>
+            </div>
+
+            <div class="path-grid">
+              <article class="path-check">
+                <span class="path-check-step">1</span>
+                <div>
+                  <strong>Study cards</strong>
+                  <p id="path-study-state">Mark all lesson cards as learned.</p>
+                </div>
+              </article>
+              <article class="path-check">
+                <span class="path-check-step">2</span>
+                <div>
+                  <strong>Quiz</strong>
+                  <p id="path-quiz-state">Reach 100% to move forward.</p>
+                </div>
+              </article>
+              <article class="path-check">
+                <span class="path-check-step">3</span>
+                <div>
+                  <strong>Typing</strong>
+                  <p id="path-typing-state">Repeat and type until you hit 100%.</p>
+                </div>
+              </article>
+              <article class="path-check">
+                <span class="path-check-step">4</span>
+                <div>
+                  <strong>Grammar</strong>
+                  <p id="path-grammar-state">Complete the final lesson step at 100%.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="path-actions">
+              <button id="path-start-button" class="toolbar-button primary" type="button">
+                Start current step
+              </button>
+              <p id="path-footnote" class="path-footnote">
+                The next lesson unlocks automatically after all four parts are complete.
+              </p>
+            </div>
+          </section>
+
+          <section id="course-view" class="view is-active" aria-label="Course view">
+            <div class="view-header">
+              <div>
+                <p class="eyebrow">Course Library</p>
+                <h3 id="study-title">Browse the current deck</h3>
+                <p id="study-summary" class="section-copy">
+                  Pick a lesson on the left or search for a phrase to narrow the
+                  deck.
+                </p>
+              </div>
+              <div class="glass-note">
+                Each card keeps meaning, pronunciation, and audio together.
+              </div>
+            </div>
+
+            <div id="empty-state" class="empty-state" hidden>
+              No cards match the current filters yet.
+            </div>
+
+            <div id="card-grid" class="card-grid"></div>
+          </section>
+
+          <section id="lesson-view" class="view" aria-label="Lesson workspace">
+            <article class="lesson-shell material-panel">
+              <div id="ios-top-bar" class="ios-top-bar">
+                <div class="ios-journey-shell">
+                  <div class="ios-journey-header">
+                    <div>
+                      <p class="eyebrow">Your Progress</p>
+                      <h3 id="ios-journey-title">Lesson 1 of 20</h3>
+                    </div>
+                    <span id="ios-journey-pill" class="glass-pill">0% complete</span>
+                  </div>
+
+                  <div class="ios-journey-track" aria-hidden="true">
+                    <div id="ios-journey-bar" class="ios-journey-bar"></div>
+                  </div>
+                </div>
+
+                <div class="lesson-header">
+                  <div>
+                    <p class="eyebrow">Practice Space</p>
+                    <h3 id="lesson-title">Choose a step and press start</h3>
+                    <p id="lesson-summary" class="section-copy">
+                      Each step gets its own focused workspace with a guided order
+                      from Study to Quiz, Typing, and Grammar.
+                    </p>
+                  </div>
+                  <div class="lesson-header-actions">
+                    <span id="lesson-status" class="glass-pill">Not started</span>
+                    <span id="lesson-progress-text" class="glass-pill">0% complete</span>
+                    <button id="back-to-course" class="toolbar-button" type="button">
+                      Back to course
+                    </button>
+                  </div>
+                </div>
+
+                <div class="lesson-progress-track" aria-hidden="true">
+                  <div id="lesson-progress-bar" class="lesson-progress-bar"></div>
+                </div>
+
+                <div class="lesson-stats">
+                  <div class="mini-stat">
+                    <span class="mini-label">Step</span>
+                    <strong id="lesson-cards-count">0</strong>
+                  </div>
+                  <div class="mini-stat">
+                    <span class="mini-label">Learned</span>
+                    <strong id="lesson-learned-count">0%</strong>
+                  </div>
+                  <div class="mini-stat">
+                    <span class="mini-label">Best Quiz</span>
+                    <strong id="lesson-quiz-best">0%</strong>
+                  </div>
+                  <div class="mini-stat">
+                    <span class="mini-label">Typing</span>
+                    <strong id="lesson-typing-best">0%</strong>
+                  </div>
+                  <div class="mini-stat">
+                    <span class="mini-label">Grammar</span>
+                    <strong id="lesson-grammar-best">0%</strong>
+                  </div>
+                </div>
+
+                <div class="exercise-tabs" role="tablist" aria-label="Lesson exercises">
+                  <button class="exercise-tab is-active" type="button" data-exercise="study">
+                    Step 1 Study
+                  </button>
+                  <button class="exercise-tab" type="button" data-exercise="quiz">
+                    Step 2 Quiz
+                  </button>
+                  <button class="exercise-tab" type="button" data-exercise="typing">
+                    Step 3 Typing
+                  </button>
+                  <button class="exercise-tab" type="button" data-exercise="grammar">
+                    Step 4 Grammar
+                  </button>
+                </div>
+              </div>
+
+              <div id="lesson-empty" class="empty-state">
+                Select a step on the left and press Start selected lesson to
+                open its dedicated workspace.
+              </div>
+
+              <div id="lesson-body" class="lesson-body" hidden>
+                <section id="exercise-study" class="exercise-pane is-active">
+                  <div class="view-header compact">
+                    <div>
+                      <p class="eyebrow">Study Cards</p>
+                      <h3>Learn the lesson phrases</h3>
+                      <p class="section-copy">
+                        Audio, English translation, and pronunciation stay together.
+                      </p>
+                    </div>
+                    <div class="glass-note">
+                      Mark cards as learned while you work through the lesson.
+                    </div>
+                  </div>
+
+                  <div id="lesson-study-grid" class="card-grid"></div>
+
+                  <article class="study-next-panel material-panel">
+                    <div class="study-next-header">
+                      <div>
+                        <p class="eyebrow">Next Step</p>
+                        <h3 id="study-next-title">Finish Step 1 Study to unlock Step 2 Quiz.</h3>
+                        <p id="study-next-copy" class="section-copy">
+                          Finish this step's cards first, then move forward through the next parts in order.
+                        </p>
+                      </div>
+                      <span id="study-next-pill" class="glass-pill">0 / 4 parts complete</span>
+                    </div>
+
+                    <div class="study-next-actions">
+                      <button
+                        class="toolbar-button primary study-nav-button"
+                        type="button"
+                        data-exercise="quiz"
+                        disabled
+                      >
+                        Go to Quiz
+                      </button>
+                      <button
+                        class="toolbar-button study-nav-button"
+                        type="button"
+                        data-exercise="typing"
+                        disabled
+                      >
+                        Go to Typing
+                      </button>
+                      <button
+                        class="toolbar-button study-nav-button"
+                        type="button"
+                        data-exercise="grammar"
+                        disabled
+                      >
+                        Go to Grammar
+                      </button>
+                    </div>
+                  </article>
+                </section>
+
+                <section id="exercise-quiz" class="exercise-pane">
+                  <div class="view-header compact">
+                    <div>
+                      <p class="eyebrow">Lesson Quiz</p>
+                      <h3>Reach 100% to complete Step 2</h3>
+                      <p class="section-copy">
+                        Perfect recall unlocks Step 3 Typing.
+                      </p>
+                    </div>
+                    <label class="mode-shell">
+                      <span class="search-label">Quiz mode</span>
+                      <select id="lesson-quiz-mode">
+                        <option value="bisayaToEnglish">Bisaya to English</option>
+                        <option value="englishToBisaya">English to Bisaya</option>
+                        <option value="listenToBisaya">Listen and choose</option>
+                      </select>
+                    </label>
+                  </div>
+
+                    <div class="quiz-stats">
+                      <div class="mini-stat">
+                        <span class="mini-label">Question</span>
+                        <strong id="lesson-quiz-progress">0 / 35</strong>
+                      </div>
+                      <div class="mini-stat">
+                        <span class="mini-label">Score</span>
+                      <strong id="lesson-quiz-score">0</strong>
+                    </div>
+                  </div>
+
+                  <article class="quiz-card material-panel">
+                    <p class="quiz-kicker">Ready to practice?</p>
+                    <h3 id="lesson-quiz-prompt">Choose a quiz mode to begin.</h3>
+                    <p id="lesson-quiz-helper" class="quiz-helper">
+                      This quiz only uses the lesson you started.
+                    </p>
+                    <div id="lesson-quiz-audio-wrap" class="quiz-audio-wrap" hidden>
+                      <button
+                        id="lesson-quiz-audio-button"
+                        class="toolbar-button primary"
+                        type="button"
+                      >
+                        Play audio
+                      </button>
+                    </div>
+                    <div id="lesson-quiz-options" class="quiz-options"></div>
+                    <div class="quiz-actions">
+                      <button id="lesson-start-quiz" class="toolbar-button primary" type="button">
+                        Start quiz
+                      </button>
+                      <button
+                        id="lesson-next-question"
+                        class="toolbar-button"
+                        type="button"
+                        hidden
+                      >
+                        Next question
+                      </button>
+                    </div>
+                    <p id="lesson-quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+                  </article>
+                </section>
+
+                <section id="exercise-typing" class="exercise-pane">
+                  <article class="practice-card material-panel">
+                    <div class="view-header compact practice-header">
+                      <div>
+                        <p class="eyebrow">Typing Coach</p>
+                        <h3 id="typing-prompt">Type the Bisaya phrase from the English clue.</h3>
+                        <p id="typing-helper" class="section-copy">
+                          You will get spelling support if you are close.
+                        </p>
+                      </div>
+                      <div class="practice-overview">
+                        <div class="mini-stat">
+                          <span class="mini-label">Progress</span>
+                          <strong id="typing-progress">0 / 35</strong>
+                        </div>
+                        <div class="mini-stat">
+                          <span class="mini-label">Typing score</span>
+                          <strong id="typing-score">0%</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <label class="typing-shell">
+                      <span class="search-label">Your answer</span>
+                      <input
+                        id="typing-input"
+                        class="typing-input"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="Type the Bisaya phrase here"
+                      />
+                    </label>
+
+                    <p id="typing-hint" class="hint-text">Hints will appear here.</p>
+                    <p id="typing-feedback" class="quiz-feedback" aria-live="polite"></p>
+
+                    <div class="quiz-actions practice-actions">
+                      <button id="start-typing" class="toolbar-button primary" type="button">
+                        Start typing
+                      </button>
+                      <button id="check-typing" class="toolbar-button" type="button">
+                        Check answer
+                      </button>
+                      <button id="next-typing" class="toolbar-button" type="button" hidden>
+                        Next phrase
+                      </button>
+                      <button id="reveal-typing" class="toolbar-button" type="button">
+                        Hint / answer
+                      </button>
+                    </div>
+                  </article>
+                </section>
+
+                <section id="exercise-grammar" class="exercise-pane">
+                  <article class="practice-card material-panel">
+                    <div class="view-header compact practice-header">
+                      <div>
+                        <p class="eyebrow">Grammar Exercise</p>
+                        <h3 id="grammar-prompt">Fill in the missing Bisaya word.</h3>
+                        <p id="grammar-helper" class="section-copy">
+                          These exercises focus on sentence patterns and spelling.
+                        </p>
+                      </div>
+                      <div class="practice-overview">
+                        <div class="mini-stat">
+                          <span class="mini-label">Progress</span>
+                          <strong id="grammar-progress">0 / 35</strong>
+                        </div>
+                        <div class="mini-stat">
+                          <span class="mini-label">Grammar score</span>
+                          <strong id="grammar-score">0%</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p id="grammar-sentence" class="grammar-sentence">
+                      The sentence with a blank will appear here.
+                    </p>
+
+                    <label class="typing-shell">
+                      <span class="search-label">Missing word</span>
+                      <input
+                        id="grammar-input"
+                        class="typing-input"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="Type the missing Bisaya word"
+                      />
+                    </label>
+
+                    <p id="grammar-hint" class="hint-text">Hints will appear here.</p>
+                    <p id="grammar-feedback" class="quiz-feedback" aria-live="polite"></p>
+
+                    <div class="quiz-actions practice-actions">
+                      <button id="start-grammar" class="toolbar-button primary" type="button">
+                        Start grammar
+                      </button>
+                      <button id="check-grammar" class="toolbar-button" type="button">
+                        Check answer
+                      </button>
+                      <button id="next-grammar" class="toolbar-button" type="button" hidden>
+                        Next sentence
+                      </button>
+                      <button id="reveal-grammar" class="toolbar-button" type="button">
+                        Hint / answer
+                      </button>
+                    </div>
+                  </article>
+                </section>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+
+      <footer class="app-footer">
+        <p>App Development by Vincent-HV</p>
+      </footer>
+    </div>
+  </body>
+</html>

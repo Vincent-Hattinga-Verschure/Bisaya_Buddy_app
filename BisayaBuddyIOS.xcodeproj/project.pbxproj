@@ -1,0 +1,335 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A6F00010001000100000001 /* BisayaBuddyIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F00010001000100000011 /* BisayaBuddyIOSApp.swift */; };
+		8A6F00010001000100000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F00010001000100000012 /* ContentView.swift */; };
+		8A6F00010001000100000003 /* BisayaBuddyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F00010001000100000013 /* BisayaBuddyWebView.swift */; };
+		8A6F00010001000100000004 /* BisayaBuddyLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F00010001000100000014 /* BisayaBuddyLogging.swift */; };
+		8A6F00010001000100000005 /* Bisaya Buddy Single File.html in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F00010001000100000015 /* Bisaya Buddy Single File.html */; };
+		8A6F00010001000100000006 /* AppIcon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F00010001000100000019 /* AppIcon-60@2x.png */; };
+		8A6F00010001000100000007 /* AppIcon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F0001000100010000001A /* AppIcon-60@3x.png */; };
+		8A6F00010001000100000008 /* AppIcon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F0001000100010000001B /* AppIcon-76@2x.png */; };
+		8A6F00010001000100000009 /* AppIcon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F0001000100010000001C /* AppIcon-83.5@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8A6F00010001000100000010 /* BisayaBuddyIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BisayaBuddyIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A6F00010001000100000011 /* BisayaBuddyIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BisayaBuddyIOSApp.swift; sourceTree = "<group>"; };
+		8A6F00010001000100000012 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8A6F00010001000100000013 /* BisayaBuddyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BisayaBuddyWebView.swift; sourceTree = "<group>"; };
+		8A6F00010001000100000014 /* BisayaBuddyLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BisayaBuddyLogging.swift; sourceTree = "<group>"; };
+		8A6F00010001000100000015 /* Bisaya Buddy Single File.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "Bisaya Buddy Single File.html"; sourceTree = SOURCE_ROOT; };
+		8A6F00010001000100000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A6F00010001000100000017 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8A6F00010001000100000019 /* AppIcon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-60@2x.png"; sourceTree = "<group>"; };
+		8A6F0001000100010000001A /* AppIcon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-60@3x.png"; sourceTree = "<group>"; };
+		8A6F0001000100010000001B /* AppIcon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-76@2x.png"; sourceTree = "<group>"; };
+		8A6F0001000100010000001C /* AppIcon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-83.5@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A6F00010001000100000020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A6F00010001000100000030 = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000031 /* iOS */,
+				8A6F00010001000100000032 /* Sources/BisayaBuddyMacApp */,
+				8A6F00010001000100000033 /*  */,
+				8A6F00010001000100000034 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A6F00010001000100000031 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000035 /* BisayaBuddyIOS */,
+			);
+			path = iOS;
+			sourceTree = SOURCE_ROOT;
+		};
+		8A6F00010001000100000032 /* Sources/BisayaBuddyMacApp */ = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000012 /* ContentView.swift */,
+				8A6F00010001000100000013 /* BisayaBuddyWebView.swift */,
+				8A6F00010001000100000014 /* BisayaBuddyLogging.swift */,
+			);
+			path = Sources/BisayaBuddyMacApp;
+			sourceTree = SOURCE_ROOT;
+		};
+		8A6F00010001000100000033 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000015 /* Bisaya Buddy Single File.html */,
+			);
+			name = "";
+			sourceTree = SOURCE_ROOT;
+		};
+		8A6F00010001000100000034 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000010 /* BisayaBuddyIOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A6F00010001000100000035 /* BisayaBuddyIOS */ = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000011 /* BisayaBuddyIOSApp.swift */,
+				8A6F00010001000100000016 /* Info.plist */,
+				8A6F00010001000100000017 /* Assets.xcassets */,
+				8A6F00010001000100000036 /* Icons */,
+			);
+			path = BisayaBuddyIOS;
+			sourceTree = "<group>";
+		};
+		8A6F00010001000100000036 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8A6F00010001000100000019 /* AppIcon-60@2x.png */,
+				8A6F0001000100010000001A /* AppIcon-60@3x.png */,
+				8A6F0001000100010000001B /* AppIcon-76@2x.png */,
+				8A6F0001000100010000001C /* AppIcon-83.5@2x.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A6F00010001000100000040 /* BisayaBuddyIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A6F00010001000100000061 /* Build configuration list for PBXNativeTarget "BisayaBuddyIOS" */;
+			buildPhases = (
+				8A6F00010001000100000021 /* Rebuild HTML Bundle */,
+				8A6F00010001000100000022 /* Sources */,
+				8A6F00010001000100000020 /* Frameworks */,
+				8A6F00010001000100000023 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BisayaBuddyIOS;
+			productName = BisayaBuddyIOS;
+			productReference = 8A6F00010001000100000010 /* BisayaBuddyIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A6F00010001000100000050 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					8A6F00010001000100000040 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 8A6F00010001000100000060 /* Build configuration list for PBXProject "BisayaBuddyIOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8A6F00010001000100000030;
+			productRefGroup = 8A6F00010001000100000034 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A6F00010001000100000040 /* BisayaBuddyIOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A6F00010001000100000023 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A6F00010001000100000005 /* Bisaya Buddy Single File.html in Resources */,
+				8A6F00010001000100000006 /* AppIcon-60@2x.png in Resources */,
+				8A6F00010001000100000007 /* AppIcon-60@3x.png in Resources */,
+				8A6F00010001000100000008 /* AppIcon-76@2x.png in Resources */,
+				8A6F00010001000100000009 /* AppIcon-83.5@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A6F00010001000100000021 /* Rebuild HTML Bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/index.html",
+				"$(SRCROOT)/styles.css",
+				"$(SRCROOT)/lesson-data.js",
+				"$(SRCROOT)/app.js",
+			);
+			name = "Rebuild HTML Bundle";
+			outputPaths = (
+				"$(SRCROOT)/Bisaya Buddy Single File.html",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\ncd \"$SRCROOT\"\nif [ -f build_single_file.js ] && command -v node >/dev/null 2>&1; then\n  /usr/bin/env node build_single_file.js\nelif [ -f \"Bisaya Buddy Single File.html\" ]; then\n  :\nelse\n  echo \"error: neither node nor a prebuilt 'Bisaya Buddy Single File.html' file is available\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A6F00010001000100000022 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A6F00010001000100000001 /* BisayaBuddyIOSApp.swift in Sources */,
+				8A6F00010001000100000002 /* ContentView.swift in Sources */,
+				8A6F00010001000100000003 /* BisayaBuddyWebView.swift in Sources */,
+				8A6F00010001000100000004 /* BisayaBuddyLogging.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8A6F00010001000100000070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8A6F00010001000100000071 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A6F00010001000100000072 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = GS5BYPVHZ3;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = iOS/BisayaBuddyIOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vincenth.bisayabuddy.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8A6F00010001000100000073 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = GS5BYPVHZ3;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = iOS/BisayaBuddyIOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vincenth.bisayabuddy.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A6F00010001000100000060 /* Build configuration list for PBXProject "BisayaBuddyIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A6F00010001000100000070 /* Debug */,
+				8A6F00010001000100000071 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A6F00010001000100000061 /* Build configuration list for PBXNativeTarget "BisayaBuddyIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A6F00010001000100000072 /* Debug */,
+				8A6F00010001000100000073 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A6F00010001000100000050 /* Project object */;
+}
