@@ -1058,6 +1058,18 @@ select,
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+.study-card-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.study-card-controls[hidden] {
+  display: none;
+}
+
 .study-card {
   display: grid;
   gap: 14px;
@@ -4003,6 +4015,45 @@ body.native-app-shell .card-grid {
   gap: 18px;
 }
 
+body.native-app-shell #lesson-study-grid[data-presentation="single"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body.native-app-shell #lesson-study-grid[data-presentation="single"] .study-card {
+  min-height: clamp(300px, 48vh, 520px);
+  grid-template-rows: auto 1fr auto;
+}
+
+body.native-app-shell #lesson-study-grid[data-presentation="single"] .card-copy {
+  align-self: center;
+  justify-items: center;
+  text-align: center;
+}
+
+body.native-app-shell #lesson-study-grid[data-presentation="single"] .card-bisaya,
+body.native-app-shell #lesson-study-grid[data-presentation="single"] .card-english,
+body.native-app-shell #lesson-study-grid[data-presentation="single"] .card-pronunciation,
+body.native-app-shell #lesson-study-grid[data-presentation="single"] .card-meta {
+  text-align: center;
+  justify-content: center;
+}
+
+body.native-app-shell .study-card-controls {
+  width: min(100%, var(--native-content-width));
+  margin: 10px auto 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+body.native-app-shell .study-card-controls .glass-pill {
+  justify-self: center;
+}
+
+body.native-app-shell .study-card-controls #lesson-study-next {
+  justify-self: end;
+}
+
 body.native-app-shell .study-card {
   position: relative;
   gap: 18px;
@@ -4178,6 +4229,15 @@ body.native-app-shell .practice-overview {
   body.native-app-shell .ios-complete-card h2 {
     max-width: none;
   }
+
+  body.native-app-shell .study-card-controls {
+    grid-template-columns: 1fr;
+  }
+
+  body.native-app-shell .study-card-controls .glass-pill,
+  body.native-app-shell .study-card-controls #lesson-study-next {
+    justify-self: stretch;
+  }
 }
 
 body.native-app-shell {
@@ -4262,5 +4322,188 @@ body.native-app-shell .ios-complete-actions .toolbar-button {
   body.native-app-shell .ios-complete-actions .toolbar-button {
     width: 100%;
     min-width: 0;
+  }
+}
+
+body.native-app-shell {
+  --native-outer-gutter: clamp(12px, 2.2vw, 28px);
+  --native-shell-max-width: 1520px;
+  --native-content-max-width: 1120px;
+  --native-shell-width: min(
+    var(--native-shell-max-width),
+    calc(100vw - (var(--native-outer-gutter) * 2) - var(--safe-left) - var(--safe-right))
+  );
+  --native-content-width: min(
+    var(--native-content-max-width),
+    calc(var(--native-shell-width) - clamp(28px, 4vw, 72px))
+  );
+  background: linear-gradient(180deg, #0d1324 0%, #0a1020 44%, #070b14 100%);
+}
+
+html[data-theme="dark"] body.native-app-shell {
+  background: linear-gradient(180deg, #0d1324 0%, #0a1020 44%, #070b14 100%);
+}
+
+body.native-app-shell::before,
+body.native-app-shell::after,
+body.native-app-shell .ios-welcome-card::before,
+body.native-app-shell .ios-welcome-card::after,
+body.native-app-shell .ios-complete-card::before,
+body.native-app-shell .ios-journey-shell::before,
+body.native-app-shell .ios-journey-shell::after,
+body.native-app-shell .lesson-header::before,
+body.native-app-shell .study-card::before,
+body.native-app-shell .study-card::after,
+body.native-app-shell .quiz-card::before,
+body.native-app-shell .typing-shell::before,
+body.native-app-shell .grammar-sentence::before,
+body.native-app-shell .study-next-panel::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+body.native-app-shell .window-shell,
+body.native-app-shell .ios-welcome-screen,
+body.native-app-shell .ios-complete-modal {
+  background: transparent;
+}
+
+body.native-app-shell .workspace {
+  padding:
+    calc(var(--safe-top) + var(--native-outer-gutter))
+    calc(var(--safe-right) + var(--native-outer-gutter))
+    calc(var(--safe-bottom) + var(--native-outer-gutter))
+    calc(var(--safe-left) + var(--native-outer-gutter));
+}
+
+body.native-app-shell .content-region {
+  width: min(100%, var(--native-shell-width));
+  margin-inline: auto;
+}
+
+body.native-app-shell .lesson-shell {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  border-radius: clamp(24px, 3vw, 38px);
+  background: linear-gradient(180deg, rgba(9, 14, 28, 0.9), rgba(6, 10, 20, 0.96));
+  border: 1px solid rgba(123, 150, 235, 0.16);
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(26px);
+}
+
+body.native-app-shell .ios-top-bar,
+body.native-app-shell #lesson-empty,
+body.native-app-shell .lesson-body,
+body.native-app-shell .exercise-pane.is-active > *,
+body.native-app-shell .card-grid,
+body.native-app-shell .exercise-tabs {
+  width: min(100%, var(--native-content-width));
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+body.native-app-shell .ios-top-bar {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 20px);
+  padding: clamp(18px, 2.4vw, 30px) 0 clamp(14px, 2vw, 18px);
+}
+
+body.native-app-shell .lesson-body {
+  padding: 8px 0 clamp(20px, 2.6vw, 30px);
+}
+
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card,
+body.native-app-shell .ios-journey-shell,
+body.native-app-shell .lesson-header,
+body.native-app-shell .study-card,
+body.native-app-shell .quiz-card,
+body.native-app-shell .practice-card,
+body.native-app-shell .study-next-panel,
+body.native-app-shell .typing-shell,
+body.native-app-shell .grammar-sentence,
+body.native-app-shell .glass-note,
+body.native-app-shell .empty-state {
+  background: linear-gradient(180deg, rgba(11, 17, 31, 0.96), rgba(7, 11, 22, 0.98));
+}
+
+body.native-app-shell .ios-welcome-card,
+body.native-app-shell .ios-complete-card,
+body.native-app-shell .lesson-header,
+body.native-app-shell .ios-journey-shell {
+  padding: clamp(20px, 3vw, 30px);
+}
+
+body.native-app-shell .exercise-tabs {
+  gap: 12px;
+}
+
+body.native-app-shell .exercise-tab {
+  min-height: clamp(68px, 8vw, 84px);
+  padding: clamp(15px, 2vw, 18px) clamp(18px, 2.4vw, 22px);
+}
+
+body.native-app-shell .exercise-tab::before {
+  background: rgba(72, 198, 255, 0.9);
+}
+
+body.native-app-shell .study-card[data-tone="electric"] {
+  background: linear-gradient(180deg, rgba(12, 19, 37, 0.98), rgba(8, 12, 24, 0.98));
+  border-color: rgba(72, 198, 255, 0.24);
+}
+
+body.native-app-shell .study-card[data-tone="indigo"] {
+  background: linear-gradient(180deg, rgba(14, 18, 40, 0.98), rgba(9, 12, 26, 0.98));
+  border-color: rgba(151, 112, 255, 0.24);
+}
+
+body.native-app-shell .study-card[data-tone="graphite"] {
+  background: linear-gradient(180deg, rgba(16, 22, 40, 0.98), rgba(10, 14, 27, 0.98));
+  border-color: rgba(120, 146, 214, 0.18);
+}
+
+@media (min-width: 1180px) and (min-height: 760px) {
+  body.native-app-shell .ios-top-bar {
+    grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  body.native-app-shell .ios-journey-shell,
+  body.native-app-shell .lesson-header {
+    height: 100%;
+  }
+}
+
+@media (max-height: 780px) {
+  body.native-app-shell .ios-top-bar {
+    gap: 12px;
+    padding-top: 16px;
+    padding-bottom: 12px;
+  }
+
+  body.native-app-shell .lesson-header,
+  body.native-app-shell .ios-journey-shell,
+  body.native-app-shell .ios-welcome-card,
+  body.native-app-shell .ios-complete-card {
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  body.native-app-shell {
+    --native-outer-gutter: 10px;
+    --native-content-width: min(
+      100%,
+      calc(100vw - (var(--native-outer-gutter) * 2) - var(--safe-left) - var(--safe-right))
+    );
+  }
+
+  body.native-app-shell .lesson-shell {
+    border-radius: 24px;
   }
 }

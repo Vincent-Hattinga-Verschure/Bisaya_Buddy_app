@@ -232,6 +232,7 @@ const state = {
   deferredInstallPrompt: null,
   iosWelcomeVisible: nativeAppShell,
   iosCompletionModal: null,
+  studyDeckIndices: {},
   lessonQuiz: createEmptyQuizState(),
   typingSession: createEmptyPracticeState(),
   grammarSession: createEmptyPracticeState(),
@@ -329,6 +330,10 @@ const elements = {
   lessonEmpty: document.querySelector("#lesson-empty"),
   lessonBody: document.querySelector("#lesson-body"),
   lessonStudyGrid: document.querySelector("#lesson-study-grid"),
+  lessonStudyControls: document.querySelector("#lesson-study-controls"),
+  lessonStudyCounter: document.querySelector("#lesson-study-counter"),
+  lessonStudyPrev: document.querySelector("#lesson-study-prev"),
+  lessonStudyNext: document.querySelector("#lesson-study-next"),
   studyNextTitle: document.querySelector("#study-next-title"),
   studyNextCopy: document.querySelector("#study-next-copy"),
   studyNextPill: document.querySelector("#study-next-pill"),
@@ -793,6 +798,14 @@ function bindEvents() {
     button.addEventListener("click", () => {
       openPracticeFromStudy(button.dataset.exercise);
     });
+  });
+
+  elements.lessonStudyPrev?.addEventListener("click", () => {
+    moveLessonStudyIndex(-1);
+  });
+
+  elements.lessonStudyNext?.addEventListener("click", () => {
+    moveLessonStudyIndex(1);
   });
 
   elements.lessonQuizMode.addEventListener("change", (event) => {
@@ -1576,6 +1589,7 @@ function openLessonWorkspace(lessonId, options = {}) {
     return false;
   }
 
+  setLessonStudyIndex(lessonId, 0, getEntriesForLesson(lessonId).length);
   state.lesson = lessonId;
   state.startedLesson = lessonId;
   state.lessonExercise = getRecommendedExerciseForLesson(lessonId);
@@ -2055,6 +2069,82 @@ function renderCardSet(container, entries) {
     .join("");
 }
 
+function getLessonStudyIndex(lessonId, totalEntries) {
+  const current = state.studyDeckIndices[lessonId] ?? 0;
+  return Math.min(Math.max(current, 0), Math.max(totalEntries - 1, 0));
+}
+
+function setLessonStudyIndex(lessonId, nextIndex, totalEntries) {
+  if (!lessonId) {
+    return 0;
+  }
+
+  const clamped = Math.min(Math.max(nextIndex, 0), Math.max(totalEntries - 1, 0));
+  state.studyDeckIndices = {
+    ...state.studyDeckIndices,
+    [lessonId]: clamped,
+  };
+  return clamped;
+}
+
+function lessonStudyItemLabel(entry) {
+  const tokenCount = entry.bisaya.trim().split(/\s+/).filter(Boolean).length;
+  return tokenCount <= 1 ? "word" : "phrase";
+}
+
+function renderLessonStudyDeck(lessonId, entries) {
+  const singleItemMode = nativeAppShell;
+  elements.lessonStudyGrid.dataset.presentation = singleItemMode ? "single" : "grid";
+
+  if (!singleItemMode) {
+    renderCardSet(elements.lessonStudyGrid, entries);
+    elements.lessonStudyControls.hidden = true;
+    return;
+  }
+
+  if (entries.length === 0) {
+    elements.lessonStudyGrid.innerHTML =
+      '<div class="empty-state">No lesson cards are available yet.</div>';
+    elements.lessonStudyControls.hidden = true;
+    return;
+  }
+
+  const currentIndex = getLessonStudyIndex(lessonId, entries.length);
+  const entry = entries[currentIndex];
+  const itemLabel = lessonStudyItemLabel(entry);
+
+  elements.lessonStudyGrid.innerHTML = createCardMarkup(entry, currentIndex);
+  elements.lessonStudyCounter.textContent = `${currentIndex + 1} / ${entries.length}`;
+  elements.lessonStudyPrev.disabled = currentIndex === 0;
+  elements.lessonStudyNext.disabled = currentIndex >= entries.length - 1;
+  elements.lessonStudyPrev.textContent = `Previous ${itemLabel}`;
+  elements.lessonStudyNext.textContent = `Next ${itemLabel}`;
+  elements.lessonStudyPrev.setAttribute("aria-label", `Go to previous ${itemLabel}`);
+  elements.lessonStudyNext.setAttribute("aria-label", `Go to next ${itemLabel}`);
+  elements.lessonStudyControls.hidden = entries.length <= 1;
+}
+
+function moveLessonStudyIndex(delta) {
+  const lessonId = state.startedLesson;
+  if (!lessonId) {
+    return;
+  }
+
+  const entries = getEntriesForLesson(lessonId);
+  if (entries.length <= 1) {
+    return;
+  }
+
+  const currentIndex = getLessonStudyIndex(lessonId, entries.length);
+  const nextIndex = setLessonStudyIndex(lessonId, currentIndex + delta, entries.length);
+  renderLessonStudyDeck(lessonId, entries);
+
+  const currentEntry = entries[nextIndex];
+  if (currentEntry) {
+    setAppStatus(`Showing ${currentEntry.bisaya}.`);
+  }
+}
+
 function createCardMarkup(entry, index = 0) {
   const learned = state.learned.has(entry.id);
   const lesson = getLessonMeta(entry.lesson);
@@ -2213,6 +2303,8 @@ function renderLessonWorkspace() {
     elements.lessonTypingBest.textContent = "0%";
     elements.lessonGrammarBest.textContent = "0%";
     elements.lessonStudyGrid.innerHTML = "";
+    elements.lessonStudyGrid.dataset.presentation = nativeAppShell ? "single" : "grid";
+    elements.lessonStudyControls.hidden = true;
     renderStudyNextPanel();
     renderLessonQuizCard();
     renderTypingPractice();
@@ -2254,7 +2346,7 @@ function renderLessonWorkspace() {
   elements.lessonTypingBest.textContent = `${summary.typingBest}%`;
   elements.lessonGrammarBest.textContent = `${summary.grammarBest}%`;
 
-  renderCardSet(elements.lessonStudyGrid, entries);
+  renderLessonStudyDeck(lessonId, entries);
   renderStudyNextPanel(summary);
   renderLessonQuizCard();
   renderTypingPractice();

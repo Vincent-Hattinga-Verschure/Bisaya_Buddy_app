@@ -249,8 +249,12 @@ private extension BisayaBuddyWebView {
     webView.backgroundColor = .clear
     webView.scrollView.backgroundColor = .clear
     webView.scrollView.contentInsetAdjustmentBehavior = .never
+    webView.scrollView.pinchGestureRecognizer?.isEnabled = false
+    webView.scrollView.minimumZoomScale = 1
+    webView.scrollView.maximumZoomScale = 1
     #else
     webView.setValue(false, forKey: "drawsBackground")
+    webView.allowsMagnification = false
     #endif
     webView.isInspectable = true
 
